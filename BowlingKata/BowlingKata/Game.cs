@@ -16,7 +16,7 @@
             int frameIndex = 0;
             for (int frame = 0; frame < 10; frame++)
             {
-                if (IsStrike(frameIndex, rolls))
+                if (IsStrike(new Frame(frameIndex, rolls)))
                 {
                     score += 10 + StrikeBonus(frameIndex, rolls);
                     frameIndex++;
@@ -35,9 +35,9 @@
             return score;
         }
 
-        private bool IsStrike(int frameIndex, int[] rolls)
+        private bool IsStrike(Frame frame)
         {
-            return rolls[frameIndex] == 10;
+            return frame.Rolls[frame.FrameIndex] == 10;
         }
 
         private bool IsSpare(int frameIndex, int[] rolls)
