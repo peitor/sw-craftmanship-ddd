@@ -23,7 +23,7 @@
                 }
                 else if (IsSpare(new Frame(frameIndex, rolls)))
                 {
-                    score += 10 + SpareBonus(frameIndex, rolls);
+                    score += 10 + SpareBonus(new Frame(frameIndex, rolls));
                     frameIndex += 2;
                 }
                 else
@@ -50,9 +50,9 @@
             return frame.Rolls[frame.FrameIndex + 1] + frame.Rolls[frame.FrameIndex + 2];
         }
 
-        private int SpareBonus(int frameIndex, int[] rolls)
+        private int SpareBonus(Frame frame)
         {
-            return rolls[frameIndex + 2];
+            return frame.Rolls[frame.FrameIndex + 2];
         }
 
         private int SumOfBallsInFrame(int frameIndex, int[] rolls)
