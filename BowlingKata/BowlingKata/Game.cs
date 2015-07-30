@@ -40,9 +40,9 @@
             return frame.Rolls[frame.FrameIndex] == 10;
         }
 
-        public class Frame
+        private bool IsSpare(Frame frame)
         {
-            return rolls[frameIndex] + rolls[frameIndex + 1] == 10;
+            return frame.Rolls[frame.FrameIndex] + frame.Rolls[frame.FrameIndex + 1] == 10;
         }
 
         private int StrikeBonus(int frameIndex, int[] rolls)
