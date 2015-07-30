@@ -42,18 +42,16 @@
                 if (currentFrame.IsStrike())
                 {
                     frameScore = 10 + currentFrame.StrikeBonus();
-                    score += frameScore;
                 }
                 else if (currentFrame.IsSpare())
                 {
                     frameScore = 10 + currentFrame.SpareBonus();
-                    score += frameScore;
                 }
                 else
                 {
                     frameScore = currentFrame.SumOfBallsInFrame();
-                    score += frameScore;
                 }
+                score += frameScore;
             }
             return score;
         }
