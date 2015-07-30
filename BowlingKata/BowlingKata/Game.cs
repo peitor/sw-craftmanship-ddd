@@ -18,7 +18,7 @@
             {
                 if (IsStrike(new Frame(frameIndex, rolls)))
                 {
-                    score += 10 + StrikeBonus(frameIndex, rolls);
+                    score += 10 + StrikeBonus(new Frame(frameIndex, rolls));
                     frameIndex++;
                 }
                 else if (IsSpare(new Frame(frameIndex, rolls)))
@@ -45,9 +45,9 @@
             return frame.Rolls[frame.FrameIndex] + frame.Rolls[frame.FrameIndex + 1] == 10;
         }
 
-        private int StrikeBonus(int frameIndex, int[] rolls)
+        private int StrikeBonus(Frame frame)
         {
-            return rolls[frameIndex + 1] + rolls[frameIndex + 2];
+            return frame.Rolls[frame.FrameIndex + 1] + frame.Rolls[frame.FrameIndex + 2];
         }
 
         private int SpareBonus(int frameIndex, int[] rolls)
