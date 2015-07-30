@@ -16,19 +16,20 @@
             int frameIndex = 0;
             for (int frame = 0; frame < 10; frame++)
             {
-                if (IsStrike(new Frame(frameIndex, rolls)))
+                var currentFrame = new Frame(frameIndex, rolls);
+                if (IsStrike(currentFrame))
                 {
-                    score += 10 + StrikeBonus(new Frame(frameIndex, rolls));
+                    score += 10 + StrikeBonus(currentFrame);
                     frameIndex++;
                 }
-                else if (IsSpare(new Frame(frameIndex, rolls)))
+                else if (IsSpare(currentFrame))
                 {
-                    score += 10 + SpareBonus(new Frame(frameIndex, rolls));
+                    score += 10 + SpareBonus(currentFrame);
                     frameIndex += 2;
                 }
                 else
                 {
-                    score += SumOfBallsInFrame(new Frame(frameIndex, rolls));
+                    score += SumOfBallsInFrame(currentFrame);
                     frameIndex += 2;
                 }
             }
