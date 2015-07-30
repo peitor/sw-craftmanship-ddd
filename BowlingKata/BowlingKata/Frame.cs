@@ -16,7 +16,7 @@
             return rolls[frameIndex] == 10;
         }
 
-        public int StrikeBonus()
+        private int StrikeBonus()
         {
             return rolls[frameIndex + 1] + rolls[frameIndex + 2];
         }
@@ -26,14 +26,32 @@
             return rolls[frameIndex] + rolls[frameIndex + 1] == 10;
         }
 
-        public int SpareBonus()
+        private int SpareBonus()
         {
             return rolls[frameIndex + 2];
         }
 
-        public int SumOfBallsInFrame()
+        private int SumOfBallsInFrame()
         {
             return rolls[frameIndex] + rolls[frameIndex + 1];
+        }
+
+        public int GetScore()
+        {
+            int frameScore;
+            if (IsStrike())
+            {
+                frameScore = 10 + StrikeBonus();
+            }
+            else if (IsSpare())
+            {
+                frameScore = 10 + SpareBonus();
+            }
+            else
+            {
+                frameScore = SumOfBallsInFrame();
+            }
+            return frameScore;
         }
     }
 }

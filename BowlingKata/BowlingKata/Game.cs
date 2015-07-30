@@ -38,27 +38,9 @@
             int score = 0;
             foreach (var currentFrame in frames)
             {
-                score += GetScore(currentFrame);
+                score += currentFrame.GetScore();
             }
             return score;
-        }
-
-        private int GetScore(Frame currentFrame)
-        {
-            int frameScore;
-            if (currentFrame.IsStrike())
-            {
-                frameScore = 10 + currentFrame.StrikeBonus();
-            }
-            else if (currentFrame.IsSpare())
-            {
-                frameScore = 10 + currentFrame.SpareBonus();
-            }
-            else
-            {
-                frameScore = currentFrame.SumOfBallsInFrame();
-            }
-            return frameScore;
         }
     }
 }
