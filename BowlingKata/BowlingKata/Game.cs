@@ -17,48 +17,23 @@
             for (int frame = 0; frame < 10; frame++)
             {
                 var currentFrame = new Frame(frameIndex, rolls);
-                if (IsStrike(currentFrame))
+                if (currentFrame.IsStrike())
                 {
-                    score += 10 + StrikeBonus(currentFrame);
+                    score += 10 + currentFrame.StrikeBonus();
                     frameIndex++;
                 }
-                else if (IsSpare(currentFrame))
+                else if (currentFrame.IsSpare())
                 {
-                    score += 10 + SpareBonus(currentFrame);
+                    score += 10 + currentFrame.SpareBonus();
                     frameIndex += 2;
                 }
                 else
                 {
-                    score += SumOfBallsInFrame(currentFrame);
+                    score += currentFrame.SumOfBallsInFrame();
                     frameIndex += 2;
                 }
             }
             return score;
-        }
-
-        private bool IsStrike(Frame frame)
-        {
-            return frame.Rolls[frame.FrameIndex] == 10;
-        }
-
-        private bool IsSpare(Frame frame)
-        {
-            return frame.Rolls[frame.FrameIndex] + frame.Rolls[frame.FrameIndex + 1] == 10;
-        }
-
-        private int StrikeBonus(Frame frame)
-        {
-            return frame.Rolls[frame.FrameIndex + 1] + frame.Rolls[frame.FrameIndex + 2];
-        }
-
-        private int SpareBonus(Frame frame)
-        {
-            return frame.Rolls[frame.FrameIndex + 2];
-        }
-
-        private int SumOfBallsInFrame(Frame frame)
-        {
-            return frame.Rolls[frame.FrameIndex] + frame.Rolls[frame.FrameIndex + 1];
         }
     }
 }
