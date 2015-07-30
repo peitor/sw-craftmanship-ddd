@@ -46,11 +46,13 @@
                 }
                 else if (currentFrame.IsSpare())
                 {
-                    score += 10 + currentFrame.SpareBonus();
+                    frameScore = 10 + currentFrame.SpareBonus();
+                    score += frameScore;
                 }
                 else
                 {
-                    score += currentFrame.SumOfBallsInFrame();
+                    frameScore = currentFrame.SumOfBallsInFrame();
+                    score += frameScore;
                 }
             }
             return score;
