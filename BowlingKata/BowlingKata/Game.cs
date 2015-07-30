@@ -34,7 +34,10 @@
                 {
                     frameIndex += 2;
                 }
+            }
 
+            foreach (var currentFrame in frames)
+            {
                 if (currentFrame.IsStrike())
                 {
                     score += 10 + currentFrame.StrikeBonus();
