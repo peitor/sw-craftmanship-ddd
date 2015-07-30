@@ -28,7 +28,7 @@
                 }
                 else
                 {
-                    score += SumOfBallsInFrame(frameIndex, rolls);
+                    score += SumOfBallsInFrame(new Frame(frameIndex, rolls));
                     frameIndex += 2;
                 }
             }
@@ -55,9 +55,9 @@
             return frame.Rolls[frame.FrameIndex + 2];
         }
 
-        private int SumOfBallsInFrame(int frameIndex, int[] rolls)
+        private int SumOfBallsInFrame(Frame frame)
         {
-            return rolls[frameIndex] + rolls[frameIndex + 1];
+            return frame.Rolls[frame.FrameIndex] + frame.Rolls[frame.FrameIndex + 1];
         }
     }
 }
