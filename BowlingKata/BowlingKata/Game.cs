@@ -14,7 +14,6 @@
 
         public int Score()
         {
-            int score = 0;
             int frameIndex = 0;
             var frames = new List<Frame>();
             for (int frame = 0; frame < 10; frame++)
@@ -36,11 +35,13 @@
                 }
             }
 
+            int score = 0;
             foreach (var currentFrame in frames)
             {
                 if (currentFrame.IsStrike())
                 {
-                    score += 10 + currentFrame.StrikeBonus();
+                    int frameScore = 10 + currentFrame.StrikeBonus();
+                    score += frameScore;
                 }
                 else if (currentFrame.IsSpare())
                 {
