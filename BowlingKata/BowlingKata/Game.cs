@@ -38,9 +38,10 @@
             int score = 0;
             foreach (var currentFrame in frames)
             {
+                int frameScore;
                 if (currentFrame.IsStrike())
                 {
-                    int frameScore = 10 + currentFrame.StrikeBonus();
+                    frameScore = 10 + currentFrame.StrikeBonus();
                     score += frameScore;
                 }
                 else if (currentFrame.IsSpare())
@@ -51,7 +52,6 @@
                 {
                     score += currentFrame.SumOfBallsInFrame();
                 }
-
             }
             return score;
         }
