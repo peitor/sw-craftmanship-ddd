@@ -11,45 +11,29 @@
             this.rolls = rolls;
         }
 
-        public int FrameIndex
-        {
-            get
-            {
-                return frameIndex;
-            }
-        }
-
-        public int[] Rolls
-        {
-            get
-            {
-                return rolls;
-            }
-        }
-
         public bool IsStrike()
         {
-            return Rolls[FrameIndex] == 10;
+            return rolls[frameIndex] == 10;
         }
 
         public int StrikeBonus()
         {
-            return Rolls[FrameIndex + 1] + Rolls[FrameIndex + 2];
+            return rolls[frameIndex + 1] + rolls[frameIndex + 2];
         }
 
         public bool IsSpare()
         {
-            return Rolls[FrameIndex] + Rolls[FrameIndex + 1] == 10;
+            return rolls[frameIndex] + rolls[frameIndex + 1] == 10;
         }
 
         public int SpareBonus()
         {
-            return Rolls[FrameIndex + 2];
+            return rolls[frameIndex + 2];
         }
 
         public int SumOfBallsInFrame()
         {
-            return Rolls[FrameIndex] + Rolls[FrameIndex + 1];
+            return rolls[frameIndex] + rolls[frameIndex + 1];
         }
     }
 }
