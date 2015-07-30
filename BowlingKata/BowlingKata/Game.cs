@@ -24,19 +24,30 @@
 
                 if (currentFrame.IsStrike())
                 {
-                    score += 10 + currentFrame.StrikeBonus();
                     frameIndex++;
                 }
                 else if (currentFrame.IsSpare())
                 {
-                    score += 10 + currentFrame.SpareBonus();
                     frameIndex += 2;
                 }
                 else
                 {
-                    score += currentFrame.SumOfBallsInFrame();
                     frameIndex += 2;
                 }
+
+                if (currentFrame.IsStrike())
+                {
+                    score += 10 + currentFrame.StrikeBonus();
+                }
+                else if (currentFrame.IsSpare())
+                {
+                    score += 10 + currentFrame.SpareBonus();
+                }
+                else
+                {
+                    score += currentFrame.SumOfBallsInFrame();
+                }
+
             }
             return score;
         }
