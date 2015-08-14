@@ -19,25 +19,30 @@
         {
             int score = 0;
             int frameIndex = 0;
+            int frameIndexNeeded = 0;
             for (int frame = 0; frame < frameNumber; frame++)
             {
                 if (IsStrike(frameIndex))
                 {
+                    frameIndexNeeded = frameIndex + 2; // need to know the next two rolls for the strike bonus
                     score += 10 + StrikeBonus(frameIndex);
                     frameIndex++;
                 }
                 else if (IsSpare(frameIndex))
                 {
+                    frameIndexNeeded = frameIndex + 2; // +2 because frameIndex currently points to the _first_ roll in the spare and we need the roll after the spare for the bonus
                     score += 10 + SpareBonus(frameIndex);
                     frameIndex += 2;
                 }
                 else
                 {
+                    frameIndexNeeded = frameIndex;
                     score += SumOfBallsInFrame(frameIndex);
                     frameIndex += 2;
                 }
             }
-            return score;
+            bool scoreIsUnknown = currentRoll > 0 && frameIndexNeeded >= currentRoll;
+            return scoreIsUnknown ? -1: score;
         }
 
         private bool IsStrike(int frameIndex)

@@ -150,5 +150,16 @@ namespace BowlingKata.Test
 
             Assert.AreEqual(5, score);
         }
+        
+        [Test]
+        public void ScoreForFrame_SpareInCurrentFrame_ScoreIsUnknown()
+        {
+            game.Roll(7);
+            game.Roll(3);
+
+            int score = game.ScoreForFrame(1);
+
+            Assert.AreEqual(-1, score);
+        }
     }
 }
