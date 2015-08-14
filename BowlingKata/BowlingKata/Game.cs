@@ -12,9 +12,14 @@
 
         public int Score()
         {
+            return ScoreForFrame(10);
+        }
+
+        public int ScoreForFrame(int frameNumber)
+        {
             int score = 0;
             int frameIndex = 0;
-            for (int frame = 0; frame < 10; frame++)
+            for (int frame = 0; frame < frameNumber; frame++)
             {
                 if (IsStrike(frameIndex))
                 {

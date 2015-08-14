@@ -129,5 +129,15 @@ namespace BowlingKata.Test
             game.Roll(5);
             game.Roll(5);
         }
+
+        [Test]
+        public void ScoreForFrame_OneRoll()
+        {
+            game.Roll(1);
+
+            int score = game.ScoreForFrame(1);
+
+            Assert.AreEqual(1, score);
+        }
     }
 }
