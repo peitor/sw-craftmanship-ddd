@@ -189,7 +189,7 @@ namespace BowlingKata.Test
         }
 
         [Test]
-        public void ScoreForFrame_StrikeInPreviousFrame_ScoreIsUnknown()
+        public void ScoreForFrame_StrikeInPreviousFrame_FirstRoll_ScoreIsUnknown()
         {
             game.Roll(10);
             game.Roll(2);
@@ -199,6 +199,21 @@ namespace BowlingKata.Test
 
             Assert.AreEqual(-1, scoreForFrame1);
             Assert.AreEqual(-1, scoreForFrame2);
+        }
+
+        [Test]
+        public void ScoreForFrame_StrikeInPreviousFrame_SecondRoll_ScoreIsKnown()
+        {
+            game.Roll(10);
+            
+            game.Roll(2);
+            game.Roll(6);
+
+            int scoreForFrame1 = game.ScoreForFrame(1);
+            int scoreForFrame2 = game.ScoreForFrame(2);
+
+            Assert.AreEqual(18, scoreForFrame1);
+            Assert.AreEqual(26, scoreForFrame2);
         }
     }
 }
