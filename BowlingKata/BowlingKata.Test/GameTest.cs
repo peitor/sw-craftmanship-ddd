@@ -295,5 +295,20 @@ namespace BowlingKata.Test
             Assert.AreEqual(31, scoreForFrame2);
             Assert.AreEqual(32, scoreForFrame3);
         }
+
+        [Test]
+        public void ScoreForFrame_Spare_FirstRollInSecondFrame_ScoreIsKnown()
+        {
+            game.Roll(3);
+            game.Roll(7);
+
+            game.Roll(1);
+
+            int scoreForFrame1 = game.ScoreForFrame(1);
+            int scoreForFrame2 = game.ScoreForFrame(2);
+
+            Assert.AreEqual(11, scoreForFrame1);
+            Assert.AreEqual(12, scoreForFrame2);
+        }
     }
 }
