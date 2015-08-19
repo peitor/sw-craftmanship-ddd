@@ -1,5 +1,7 @@
 ﻿namespace BowlingKata
 {
+    using System;
+
     public class Game
     {
         private readonly int[] rolls = new int[21];
@@ -36,7 +38,7 @@
                 }
                 else
                 {
-                    frameIndexNeeded = frameIndex;
+                    frameIndexNeeded = Math.Max(frameIndex, frameIndexNeeded); // need to take the max, for example if the previous frame was a strike
                     score += SumOfBallsInFrame(frameIndex);
                     frameIndex += 2;
                 }
