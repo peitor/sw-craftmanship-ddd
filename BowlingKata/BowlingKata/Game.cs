@@ -1,4 +1,6 @@
-﻿namespace BowlingKata
+﻿using System;
+
+namespace BowlingKata
 {
     public class Game
     {
@@ -12,27 +14,42 @@
 
         public int Score()
         {
-            int score = 0;
-            int frameIndex = 0;
-            for (int frame = 0; frame < 10; frame++)
+            return ScoreForFrame(10);
+        }
+
+        public int ScoreForFrame(int frameNumber)
+        {
+            if (frameNumber > 10 || frameNumber < 0)
             {
-                if (IsStrike(frameIndex))
+                throw new ArgumentOutOfRangeException();
+            }
+            var score = 0;
+            var currentRollIndex = 0;
+            var rollIndexNeededForCalculableResult = 0;
+
+            for (var currentFrame = 1; currentFrame <= frameNumber; currentFrame++)
+            {
+                if (IsStrike(currentRollIndex))
                 {
-                    score += 10 + StrikeBonus(frameIndex);
-                    frameIndex++;
+                    score += 10 + StrikeBonus(currentRollIndex);
+                    rollIndexNeededForCalculableResult = currentRollIndex + 2;
+                    currentRollIndex++;
                 }
-                else if (IsSpare(frameIndex))
+                else if (IsSpare(currentRollIndex))
                 {
-                    score += 10 + SpareBonus(frameIndex);
-                    frameIndex += 2;
+                    score += 10 + SpareBonus(currentRollIndex);
+                    rollIndexNeededForCalculableResult = currentRollIndex + 2;
+                    currentRollIndex += 2;
                 }
                 else
                 {
-                    score += SumOfBallsInFrame(frameIndex);
-                    frameIndex += 2;
+                    score += SumOfBallsInFrame(currentRollIndex);
+                    rollIndexNeededForCalculableResult = Math.Max(currentRollIndex, rollIndexNeededForCalculableResult);
+                    currentRollIndex += 2;
                 }
             }
-            return score;
+
+            return rollIndexNeededForCalculableResult >= currentRoll && currentRoll != 0 ? -1 : score;
         }
 
         private bool IsStrike(int frameIndex)
