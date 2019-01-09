@@ -6,28 +6,25 @@ namespace BowlingKata
 {
     public class Spare : IAttempt
     {
-        public IEnumerable<int> Rolls { get; }
+        private readonly int first;
+        private readonly int second;
 
-        public Spare(int first)
+        public Spare(int first, int second)
         {
-            if (first < 0 || first >= 10)
+            if (first + second != 10)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
-            Rolls = new List<int>(2)
-            {
-                first,
-                10 - first
-            };
+            this.first = first;
+            this.second = second;
         }
 
-        public int GetBaseScore()
-        {
-            return 10;
-        }
+        public int TotalPins => first + second;
 
-        public int NumberOfRolls => Rolls.Count();
+        public int BonusBalls => 1;
+
+        public int NumberOfBalls => 2;
 
         public bool IsComplete => true;
     }

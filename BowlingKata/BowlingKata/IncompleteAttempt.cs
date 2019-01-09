@@ -6,28 +6,25 @@ namespace BowlingKata
 {
     public class IncompleteAttempt : IAttempt
     {
-        public IEnumerable<int> Rolls { get; }
+        private readonly int first;
+        private readonly int second;
 
         public IncompleteAttempt(int first, int second)
         {
-            if (first < 0 || second < 0 || first + second >= 10)
+            if (first + second < 0 || first + second >= 10)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
-            Rolls = new List<int>(2)
-            {
-                first,
-                second
-            };
+            this.first = first;
+            this.second = second;
         }
 
-        public int GetBaseScore()
-        {
-            return Rolls.Sum();
-        }
+        public int TotalPins => first + second;
 
-        public int NumberOfRolls => Rolls.Count();
+        public int BonusBalls => 0;
+
+        public int NumberOfBalls => 2;
 
         public bool IsComplete => false;
     }

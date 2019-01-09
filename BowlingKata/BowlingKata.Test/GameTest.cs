@@ -103,7 +103,7 @@ namespace BowlingKata.Test
         }
 
         [Test]
-        [ExpectedException(typeof(IndexOutOfRangeException))]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void RollingMoreThen21TimesShouldThrowException()
         {
             game.Roll(5);

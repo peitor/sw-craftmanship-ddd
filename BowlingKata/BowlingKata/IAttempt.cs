@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace BowlingKata
 {
     public interface IAttempt
     {
-        IEnumerable<int> Rolls { get; }
+        int TotalPins { get; }
 
-        int GetBaseScore();
+        int BonusBalls { get; }
 
-        int NumberOfRolls { get; }
+        int NumberOfBalls { get; }
 
         bool IsComplete { get; }
     }

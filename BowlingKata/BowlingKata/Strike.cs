@@ -5,19 +5,15 @@ namespace BowlingKata
 {
     public class Strike : IAttempt
     {
-        public IEnumerable<int> Rolls { get; }
-
         public Strike()
         {
-            Rolls = new List<int>(1) { 10 };
         }
 
-        public int GetBaseScore()
-        {
-            return 10;
-        }
+        public int TotalPins => 10;
 
-        public int NumberOfRolls => Rolls.Count();
+        public int BonusBalls => 2;
+
+        public int NumberOfBalls => 1;
 
         public bool IsComplete => true;
     }

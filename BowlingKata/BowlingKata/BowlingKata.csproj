@@ -39,8 +39,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FirstBallPlayerState.cs" />
+    <Compile Include="Frame.cs" />
+    <Compile Include="FrameFactory.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameOverPlayerState.cs" />
+    <Compile Include="IAttempt.cs" />
+    <Compile Include="IncompleteAttempt.cs" />
+    <Compile Include="OneBonusBallPlayerState.cs" />
+    <Compile Include="PlayerState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScoreService.cs" />
+    <Compile Include="SecondBallPlayerState.cs" />
+    <Compile Include="Spare.cs" />
+    <Compile Include="SpareWithBonusFrame.cs" />
+    <Compile Include="Strike.cs" />
+    <Compile Include="StrikeWithBonusFrame.cs" />
+    <Compile Include="TwoBonusBallsPlayerState.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
