@@ -4,7 +4,7 @@ namespace BowlingKata
 {
     public abstract class PlayerState
     {
-        protected int CurrentFrameNumber { get; }
+        public int CurrentFrameNumber { get; }
         public List<Frame> Frames { get; }
 
         protected PlayerState(int currentFrameNumber, List<Frame> frames)

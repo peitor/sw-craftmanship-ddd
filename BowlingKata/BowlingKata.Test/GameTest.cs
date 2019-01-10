@@ -129,5 +129,31 @@ namespace BowlingKata.Test
             game.Roll(5);
             game.Roll(5);
         }
+
+        [Test]
+        public void IncompleteGameSpareWithEnough()
+        {
+            game.Roll(5);
+            game.Roll(5);
+            game.Roll(5);
+
+            Assert.AreEqual(15 + 5, game.Score());
+        }
+
+        [Test]
+        public void MissingPins()
+        {
+            game.Roll(5);
+            game.Roll(5);
+
+            Assert.AreEqual(10, game.Score());
+        }
+
+        [Test]
+        public void StartState()
+        {
+            var state = new Game().Start();
+            Assert.AreEqual(1, state.CurrentFrameNumber);
+        }
     }
 }
