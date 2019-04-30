@@ -324,4 +324,20 @@ namespace BowlingKata.Test.PlayingAGame
             Assert.AreEqual(12, scoreForFrame2);
         }
     }
+
+    public class VisualizeHallOfFame
+    {
+        [Test]
+        public void NoGame_NoHallOfFame()
+        {
+            Assert.AreEqual(0, HallOfFame.Length);
+        }
+
+
+    }
+
+    public class HallOfFame
+    {
+        public static int Length => 0;
+    }
 }
