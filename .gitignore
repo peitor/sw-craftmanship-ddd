@@ -190,3 +190,5 @@ ModelManifest.xml
 *.StyleCop
 BowlingKata/BowlingKata.v2.ncrunchsolution
 *.ncrunchproject
+
+desktop.ini
