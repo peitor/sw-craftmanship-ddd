@@ -1,9 +1,9 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace BowlingKata.Test
+namespace BowlingKata.Test.PlayingAGame
 {
-    public class GameTest
+    public class TotalScoreAfterEndOfGame
     {
         private Game game;
 
@@ -98,7 +98,7 @@ namespace BowlingKata.Test
             game.Roll(5);
             game.Roll(5);
             game.Roll(5);
-            
+
             Assert.AreEqual(150, game.Score());
         }
 
@@ -128,6 +128,18 @@ namespace BowlingKata.Test
             game.Roll(5);
             game.Roll(5);
             game.Roll(5);
+        }
+    }
+
+
+    public class ScoreBoardWhilePlaying
+    {
+        private Game game;
+
+        [SetUp]
+        public void BeforeTest()
+        {
+            game = new Game();
         }
 
 
