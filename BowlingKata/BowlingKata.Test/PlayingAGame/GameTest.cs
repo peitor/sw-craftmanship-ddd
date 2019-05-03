@@ -323,6 +323,15 @@ namespace BowlingKata.Test.PlayingAGame
             Assert.AreEqual(11, scoreForFrame1);
             Assert.AreEqual(12, scoreForFrame2);
         }
+
+        [Test]
+        public void GameFinishesFeatured_TwoRolls_NotFinished()
+        {
+            game.Roll(1);
+            game.Roll(1);
+
+            Assert.That(game.IsFinished == false);
+        }
     }
 
     public class VisualizeHallOfFame

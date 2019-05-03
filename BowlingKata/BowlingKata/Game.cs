@@ -6,6 +6,7 @@ namespace BowlingKata
     {
         private readonly int[] rolls = new int[21];
         private int currentRoll;
+        public bool IsFinished => false;
 
         public void Roll(int pins)
         {
