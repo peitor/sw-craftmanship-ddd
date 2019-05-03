@@ -348,8 +348,8 @@ namespace BowlingKata.Test.PlayingAGame
         public void OneGameFinished_SeeIt()
         {
             new GameSimulator().FinishGame();
-            Assert.AreEqual(1, HallOfFame.Length);
-        }
+            Assert.AreEqual(1, HallOfFame.Length); 
+        } 
 
         //  TODO LIST:
         //  3 top games finished, 1 new top game finishes -> assert on result
