@@ -17,4 +17,4 @@ This extension adds to Uncle Bobs approach a
  * Running Scoreboard  
 
 # Progress
-My thinking and progress can be monitored via the commit messages and here [Notes-Development-Approach.md].
+My thinking and progress can be monitored via the commit messages and here [Notes-Development-Approach.md]([Notes-Development-Approach.md]).
