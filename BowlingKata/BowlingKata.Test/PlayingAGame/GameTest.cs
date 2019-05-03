@@ -64,17 +64,15 @@ namespace BowlingKata.Test.PlayingAGame
         public void FivesOnlyShouldReturn150()
         {
             21.Times(() => game.Roll(5));
-            
+
             Assert.AreEqual(150, game.Score());
             Assert.That(game.IsFinished);
         }
 
         [Test]
-        [ExpectedException(typeof(IndexOutOfRangeException))]
         public void RollingMoreThen21TimesShouldThrowException()
         {
-            22.Times(() => game.Roll(5));
-            Assert.That(game.IsFinished);
+            Assert.Throws<IndexOutOfRangeException>(() => 22.Times(() => game.Roll(5)));
         }
     }
 
