@@ -3,6 +3,17 @@ using NUnit.Framework;
 
 namespace BowlingKata.Test.PlayingAGame
 {
+    public static class IntExtensions
+    {
+        // https://stackoverflow.com/a/177561/35693
+        public static void Times(this int count, Action action)
+        {
+            for (int i=0; i < count; i++)
+            {
+                action();
+            }
+        }
+    }
     public class TotalScoreAfterEndOfGame
     {
         private Game game;
@@ -22,19 +33,8 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void StrikesOnlyShouldReturn300()
         {
-            game.Roll(10);
-            game.Roll(10);
-            game.Roll(10);
-            game.Roll(10);
-            game.Roll(10);
-            game.Roll(10);
-            game.Roll(10);
-            game.Roll(10);
-            game.Roll(10);
-            game.Roll(10);
-            game.Roll(10);
-            game.Roll(10);
-
+            12.Times(()=> game.Roll(10));
+            
             Assert.AreEqual(300, game.Score());
         }
 
@@ -326,6 +326,15 @@ namespace BowlingKata.Test.PlayingAGame
 
         [Test]
         public void GameFinishesFeatured_TwoRolls_NotFinished()
+        {
+            game.Roll(1);
+            game.Roll(1);
+
+            Assert.That(game.IsFinished == false);
+        }
+
+        [Test]
+        public void GameFinishesFeatured_Rolls_NotFinished()
         {
             game.Roll(1);
             game.Roll(1);
