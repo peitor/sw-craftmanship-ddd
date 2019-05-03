@@ -8,6 +8,9 @@ namespace BowlingKata
         private int currentRoll;
 
         public bool IsFinished { get; private set; } = false;
+        
+        private bool gameFinishedWasAlreadyCalled = false;
+        public Action GameFinished { get; set; }
 
         public void Roll(int pins)
         {
@@ -16,6 +19,12 @@ namespace BowlingKata
             if (MinimumRollsHappened())
             {
                 IsFinished = Frame10HasValidScore();
+
+                if (IsFinished 
+                    && gameFinishedWasAlreadyCalled == false)
+                {
+                    GameFinished?.Invoke();
+                }
             }
         }
 

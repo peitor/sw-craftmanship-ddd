@@ -326,14 +326,14 @@ namespace BowlingKata.Test.PlayingAGame
         {
             //TODO: Sophisticated games could break the logic in the "return" statement?? <-- Assumption
             13.Times(() => game.Roll(1));
-            
+
             game.Roll(1);
             game.Roll(1);
             // TODO: play around here with this....
             Assert.That(game.IsFinished == false);
         }
 
-     
+
     }
 
     public class VisualizeHallOfFame
@@ -341,15 +341,17 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void NoGame_NoHallOfFame()
         {
-            Assert.AreEqual(0, HallOfFame.Length);
+            var world = new World();
+            Assert.AreEqual(0, world.hallOfFame.Length);
         }
 
         [Test]
         public void OneGameFinished_SeeIt()
         {
-            new GameSimulator().FinishGame();
-            Assert.AreEqual(1, HallOfFame.Length); 
-        } 
+            var world = new World();
+            world.gameSimulator.FinishGame();
+            Assert.AreEqual(1, world.hallOfFame.Length);
+        }
 
         //  TODO LIST:
         //  3 top games finished, 1 new top game finishes -> assert on result
@@ -360,18 +362,37 @@ namespace BowlingKata.Test.PlayingAGame
 
     }
 
+    public class World
+    {
+        public GameSimulator gameSimulator = new GameSimulator();
+        public HallOfFame hallOfFame = new HallOfFame();
+
+        public World()
+        {
+            // hook up delegate
+            gameSimulator.game.GameFinished += GameFinishedHappened;
+
+        }
+
+        private void GameFinishedHappened()
+        {
+            hallOfFame.Length++;
+        }
+    }
+
     public class GameSimulator
     {
-        Game game = new Game();
+        public Game game = new Game();
 
         public void FinishGame()
         {
+
             12.Times(() => game.Roll(10));
         }
     }
 
     public class HallOfFame
     {
-        public static int Length => 0;
+        public int Length { get; set; }
     }
 }
