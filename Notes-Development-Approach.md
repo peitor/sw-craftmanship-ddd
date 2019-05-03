@@ -44,12 +44,16 @@ Revert decision: Add additional Assert to existing tests.
 
   
 Is there a bug in this return statement?  
-  
+
+```
   return rollIndexNeededForCalculableResult >= currentRoll && currentRoll != 0 ? -1 : score;
+```
 
 ## Starting now with Hall Of Fame.
+
   
 -> Shared Kernel Approach.
+
     1. Detect via event when game has finished. Store that in DB.  
     2. Hall Of Fame reads from that DB.  
 
