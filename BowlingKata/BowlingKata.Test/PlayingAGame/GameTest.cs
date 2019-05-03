@@ -8,7 +8,7 @@ namespace BowlingKata.Test.PlayingAGame
         // https://stackoverflow.com/a/177561/35693
         public static void Times(this int count, Action action)
         {
-            for (int i=0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
                 action();
             }
@@ -30,12 +30,12 @@ namespace BowlingKata.Test.PlayingAGame
             Assert.AreEqual(0, game.Score());
             Assert.That(game.IsFinished == false);
         }
-         
+
         [Test]
         public void StrikesOnlyShouldReturn300()
         {
-            12.Times(()=> game.Roll(10));
-            
+            12.Times(() => game.Roll(10));
+
             Assert.AreEqual(300, game.Score());
             Assert.That(game.IsFinished);
         }
@@ -43,14 +43,14 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void PairsOfNineAndMissShouldReturn90()
         {
-            5.Times(()=>
+            5.Times(() =>
             {
                 game.Roll(9);
                 game.Roll(0);
             });
             Assert.That(game.IsFinished == false);
 
-            5.Times(()=>
+            5.Times(() =>
             {
                 game.Roll(9);
                 game.Roll(0);
@@ -269,8 +269,6 @@ namespace BowlingKata.Test.PlayingAGame
             Assert.AreEqual(12, scoreForFrame2);
         }
 
-
-
         [Test]
         public void GameFinishesFeatured_TwoRolls_NotFinished()
         {
@@ -284,11 +282,11 @@ namespace BowlingKata.Test.PlayingAGame
         public void GameFinishesFeatured_Rolls_NotFinished()
         {
             8.Times(() => game.Roll(10));
-            
+
             Assert.That(game.IsFinished == false);
         }
 
-        
+
         [Test]
         public void BUG__GameFinishesFeatured_NoRolls_NotFinished()
         {
