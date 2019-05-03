@@ -28,26 +28,36 @@ namespace BowlingKata.Test.PlayingAGame
         public void InitialScoreShouldBeZero()
         {
             Assert.AreEqual(0, game.Score());
+            Assert.That(game.IsFinished == false);
         }
-
+         
         [Test]
         public void StrikesOnlyShouldReturn300()
         {
             12.Times(()=> game.Roll(10));
             
             Assert.AreEqual(300, game.Score());
+            Assert.That(game.IsFinished);
         }
 
         [Test]
         public void PairsOfNineAndMissShouldReturn90()
         {
-            10.Times(()=>
+            5.Times(()=>
+            {
+                game.Roll(9);
+                game.Roll(0);
+            });
+            Assert.That(game.IsFinished == false);
+
+            5.Times(()=>
             {
                 game.Roll(9);
                 game.Roll(0);
             });
 
             Assert.AreEqual(90, game.Score());
+            Assert.That(game.IsFinished);
         }
 
         [Test]
@@ -56,6 +66,7 @@ namespace BowlingKata.Test.PlayingAGame
             21.Times(() => game.Roll(5));
             
             Assert.AreEqual(150, game.Score());
+            Assert.That(game.IsFinished);
         }
 
         [Test]
@@ -63,6 +74,7 @@ namespace BowlingKata.Test.PlayingAGame
         public void RollingMoreThen21TimesShouldThrowException()
         {
             22.Times(() => game.Roll(5));
+            Assert.That(game.IsFinished);
         }
     }
 
@@ -258,6 +270,8 @@ namespace BowlingKata.Test.PlayingAGame
             Assert.AreEqual(11, scoreForFrame1);
             Assert.AreEqual(12, scoreForFrame2);
         }
+
+
 
         [Test]
         public void GameFinishesFeatured_TwoRolls_NotFinished()
