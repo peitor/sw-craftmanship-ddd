@@ -10,7 +10,7 @@ namespace BowlingKata
         public bool IsFinished { get; private set; } = false;
         
         private bool gameFinishedWasAlreadyCalled = false;
-        public Action GameFinished { get; set; }
+        public Action<int> GameFinished { get; set; }
 
         public void Roll(int pins)
         {
@@ -23,7 +23,7 @@ namespace BowlingKata
                 if (IsFinished 
                     && gameFinishedWasAlreadyCalled == false)
                 {
-                    GameFinished?.Invoke();
+                    GameFinished?.Invoke(ScoreForFrame(10));
                 }
             }
         }
