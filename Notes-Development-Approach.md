@@ -25,12 +25,15 @@ _After 2 new tests I found it too cumbersome..._
    
 ## Decision
 Add additional Assert to existing tests.
+
+```
         [Test]
         public void InitialScoreShouldBeZero()
         {
             Assert.AreEqual(0, game.Score());
             Assert.That(game.IsFinished == false);
         }
+```
 
 ## Finding		
 Bug here? Test "InitialScoreShouldBeZero?" in the Game.IsFinished of ScoreForFrame(10)
