@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace BowlingKata.Test.PlayingAGame
@@ -366,23 +368,47 @@ namespace BowlingKata.Test.PlayingAGame
     {
         public GameSimulator gameSimulator = new GameSimulator();
         public HallOfFame hallOfFame = new HallOfFame();
-
+        
         public World()
         {
             // hook up delegate
             gameSimulator.game.GameFinished += GameFinishedHappened;
-
         }
 
-        private void GameFinishedHappened()
+        private void GameFinishedHappened(int score)
         {
-            hallOfFame.Length++;
+            Database.StoreGame(score);
+        }
+    }
+
+    public static class Database
+    {
+        static readonly List<BowlingGame> database = new List<BowlingGame>();
+        
+        public static void StoreGame(int score)
+        {
+            database.Add(new BowlingGame(score));
+        }
+
+        public static BowlingGame[] GetAllGames()
+        {
+            return database.ToArray();
+        }
+    }
+
+    public class BowlingGame
+    {
+        private readonly int _score;
+
+        public BowlingGame(int score)
+        {
+            _score = score;
         }
     }
 
     public class GameSimulator
     {
-        public Game game = new Game();
+        public readonly Game game = new Game();
 
         public void FinishGame()
         {
@@ -393,6 +419,6 @@ namespace BowlingKata.Test.PlayingAGame
 
     public class HallOfFame
     {
-        public int Length { get; set; }
+        public int Length => Database.GetAllGames().Count();
     }
 }
