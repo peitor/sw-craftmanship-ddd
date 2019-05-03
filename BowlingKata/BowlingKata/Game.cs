@@ -7,7 +7,7 @@ namespace BowlingKata
         private readonly int[] rolls = new int[21];
         private int currentRoll;
 
-        public bool IsFinished => ScoreForFrame(10) > -1;
+        public bool IsFinished => Frame10HasValidScore() && MinimumRollsHappened();
 
         public void Roll(int pins)
         {
@@ -77,6 +77,16 @@ namespace BowlingKata
         private int SumOfBallsInFrame(int frameIndex)
         {
             return rolls[frameIndex] + rolls[frameIndex + 1];
+        }
+
+        private bool Frame10HasValidScore()
+        {
+            return ScoreForFrame(10) > -1;
+        }
+
+        private bool MinimumRollsHappened()
+        {
+            return currentRoll >= 12;
         }
     }
 }
