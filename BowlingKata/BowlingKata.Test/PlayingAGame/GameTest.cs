@@ -333,7 +333,12 @@ namespace BowlingKata.Test.PlayingAGame
             Assert.AreEqual(0, HallOfFame.Length);
         }
 
-
+        // No games in HoF, 1 game finishes -> assert game is in HOF
+        // 3 top games finished, 1 new top game finishes -> assert on result
+        // 
+        // DISCUSSION: 
+        // What does "game finishes" mean?
+        // write 1 integration test, is that enough?
     }
 
     public class HallOfFame
