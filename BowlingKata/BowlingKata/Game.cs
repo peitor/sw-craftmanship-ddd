@@ -8,7 +8,7 @@ namespace BowlingKata
         private int currentRoll;
 
         private bool isFinished = false;
-        public bool IsFinished => Frame10HasValidScore() && MinimumRollsHappened();
+        public bool IsFinished => isFinished;
 
         public void Roll(int pins)
         {
