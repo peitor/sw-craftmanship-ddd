@@ -193,3 +193,8 @@ BowlingKata/BowlingKata.v2.ncrunchsolution
 *.ncrunchproject
 
 desktop.ini
+
+
+# This is the way how to ignore all "packages" folders in all sub folders.
+packages/
+
