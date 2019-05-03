@@ -13,13 +13,18 @@ Write an adapter "GameListener" for the Game? Add a property on the Game?
 ## Decision
 Use property on the Game. #KISS
 
-Write additional test? Add assert to existing Game Tests?
-Decision: Write new test to get a feeling for the property.
- 
-After 2 new tests I found it too cumbersome...
+## Question
+Write additional test for the feature or add assert to existing Game Tests?
 
- 
-Decision: Add additional Assert to existing tests.
+## Decision
+Write new test to get a feeling for the property.
+  
+  
+_After 2 new tests I found it too cumbersome..._
+  
+   
+## Decision
+Add additional Assert to existing tests.
         [Test]
         public void InitialScoreShouldBeZero()
         {
@@ -27,17 +32,28 @@ Decision: Add additional Assert to existing tests.
             Assert.That(game.IsFinished == false);
         }
 
-Bug here? "InitialScoreShouldBeZero?" in the Game.IsFinished of ScoreForFrame(10)
+## Finding		
+Bug here? Test "InitialScoreShouldBeZero?" in the Game.IsFinished of ScoreForFrame(10)
 Not really... It's the API and my interpretation.
 
-Revert decision: Add additional Assert to existing tests.
+## Revert 
+Revert decision: Add additional Assert to existing tests.  
 
-Is there a bug in this return statement?
+  
+Is there a bug in this return statement?  
+  
   return rollIndexNeededForCalculableResult >= currentRoll && currentRoll != 0 ? -1 : score;
 
-Starting now with Hall Of Fame.
+## Starting now with Hall Of Fame.
+  
 -> Shared Kernel Approach.
-   1. Detect via event when game has finished. Store that in DB.
-   2. Hall Of Fame reads from that DB.
-   
+    1. Detect via event when game has finished. Store that in DB.  
+    2. Hall Of Fame reads from that DB.  
+
+## Decision
+First all in memory
+
+## Decision
+Next step: refactor to a "database" --> global state between bounded context (still being shared kernel).
+
   
