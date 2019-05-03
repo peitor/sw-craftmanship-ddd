@@ -70,4 +70,4 @@ Next step: refactor to a "database" --> global state between bounded context (st
 
   * The raising of the event is in the Game.  
   * The raise event is probably buggy and broken.
-  * The world 
+  * The world hooks up events... Is that responsibility of the world?
