@@ -28,36 +28,25 @@ namespace BowlingKata.Test.PlayingAGame
         public void InitialScoreShouldBeZero()
         {
             Assert.AreEqual(0, game.Score());
-            Assert.That(game.IsFinished == false);
         }
 
         [Test]
         public void StrikesOnlyShouldReturn300()
         {
             12.Times(() => game.Roll(10));
-
             Assert.AreEqual(300, game.Score());
-            Assert.That(game.IsFinished);
         }
 
         [Test]
         public void PairsOfNineAndMissShouldReturn90()
         {
-            5.Times(() =>
+            10.Times(() =>
             {
                 game.Roll(9);
                 game.Roll(0);
             });
-            Assert.That(game.IsFinished == false);
-
-            5.Times(() =>
-            {
-                game.Roll(9);
-                game.Roll(0);
-            });
-
+            
             Assert.AreEqual(90, game.Score());
-            Assert.That(game.IsFinished);
         }
 
         [Test]
@@ -66,7 +55,6 @@ namespace BowlingKata.Test.PlayingAGame
             21.Times(() => game.Roll(5));
 
             Assert.AreEqual(150, game.Score());
-            Assert.That(game.IsFinished);
         }
 
         [Test]
@@ -286,12 +274,41 @@ namespace BowlingKata.Test.PlayingAGame
             Assert.That(game.IsFinished == false);
         }
 
+        [Test]
+        public void GameFinishesFeatured_12Strikes_GameFinished()
+        {
+            12.Times(() => game.Roll(10));
+            Assert.That(game.IsFinished);
+        }
+
+        
+        [Test]
+        public void PairsOfNineAndMissShouldReturn90()
+        {
+            5.Times(() =>
+            {
+                game.Roll(9);
+                game.Roll(0);
+            });
+            Assert.That(game.IsFinished == false);
+
+            5.Times(() =>
+            {
+                game.Roll(9);
+                game.Roll(0);
+            });
+
+            Assert.That(game.IsFinished);
+        }
+
 
         [Test]
         public void BUG__GameFinishesFeatured_NoRolls_NotFinished()
         {
             Assert.That(game.IsFinished == false);
         }
+
+
     }
 
     public class VisualizeHallOfFame
