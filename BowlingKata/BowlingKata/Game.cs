@@ -7,8 +7,7 @@ namespace BowlingKata
         private readonly int[] rolls = new int[21];
         private int currentRoll;
 
-        private bool isFinished = false;
-        public bool IsFinished => isFinished;
+        public bool IsFinished { get; private set; } = false;
 
         public void Roll(int pins)
         {
@@ -16,7 +15,7 @@ namespace BowlingKata
 
             if (MinimumRollsHappened())
             {
-                isFinished = Frame10HasValidScore();
+                IsFinished = Frame10HasValidScore();
             }
         }
 
