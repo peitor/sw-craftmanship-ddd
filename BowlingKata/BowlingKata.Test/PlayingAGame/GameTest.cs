@@ -271,9 +271,15 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void GameFinishesFeatured_Rolls_NotFinished()
         {
-            game.Roll(1);
-            game.Roll(1);
+            8.Times(() => game.Roll(10));
+            
+            Assert.That(game.IsFinished == false);
+        }
 
+        
+        [Test]
+        public void BUG__GameFinishesFeatured_NoRolls_NotFinished()
+        {
             Assert.That(game.IsFinished == false);
         }
     }
