@@ -14,7 +14,7 @@ Write an adapter "GameListener" for the Game? Add a property on the Game?
 Use property on the Game. #KISS
 
 ## Question
-Write additional test for the feature or add assert to existing Game Tests?
+Write additional test for the feature or add assert to existing Game Tests?0
 
 ## Decision
 Write new test to get a feeling for the property.
@@ -51,9 +51,15 @@ Is there a bug in this return statement?
     2. Hall Of Fame reads from that DB.  
 
 ## Decision
-First all in memory
+First all in memory. #KISS
 
 ## Decision
 Next step: refactor to a "database" --> global state between bounded context (still being shared kernel).
 
   
+# What is ugly at the moment?
+
+
+  * The raising of the event is in the Game.  
+  * The raise event is probably buggy and broken.
+  * The world 
