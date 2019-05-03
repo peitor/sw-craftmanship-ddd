@@ -321,6 +321,18 @@ namespace BowlingKata.Test.PlayingAGame
             Assert.That(game.IsFinished == false);
         }
 
+        [Test]
+        public void ASSUMPTION__ComplicatedGame_NotFinished()
+        {
+            //TODO: Sophisticated games could break the logic in the "return" statement?? <-- Assumption
+            13.Times(() => game.Roll(1));
+            
+            game.Roll(1);
+            game.Roll(1);
+            // TODO: play around here with this....
+            Assert.That(game.IsFinished == false);
+        }
+
      
     }
 
