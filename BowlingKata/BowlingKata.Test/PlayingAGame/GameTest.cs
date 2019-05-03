@@ -344,12 +344,30 @@ namespace BowlingKata.Test.PlayingAGame
             Assert.AreEqual(0, HallOfFame.Length);
         }
 
-        // No games in HoF, 1 game finishes -> assert game is in HOF
-        // 3 top games finished, 1 new top game finishes -> assert on result
+        [Test]
+        public void OneGameFinished_SeeIt()
+        {
+            new GameSimulator().FinishGame();
+            Assert.AreEqual(1, HallOfFame.Length);
+        }
+
+        //  TODO LIST:
+        //  3 top games finished, 1 new top game finishes -> assert on result
         // 
-        // DISCUSSION: 
-        // What does "game finishes" mean?
-        // write 1 integration test, is that enough?
+        //  DISCUSSION: 
+        //  What does "game finishes" mean?
+        //  write 1 integration test, is that enough?
+
+    }
+
+    public class GameSimulator
+    {
+        Game game = new Game();
+
+        public void FinishGame()
+        {
+            12.Times(() => game.Roll(10));
+        }
     }
 
     public class HallOfFame
