@@ -358,6 +358,7 @@ namespace BowlingKata.Test.PlayingAGame
         //  TODO LIST:
         //  3 top games finished, 1 new top game finishes -> assert on result
         // 
+        //  Simulate games and verify if we really see the final topscore --> Assumption event gets raised too early.
         //  DISCUSSION: 
         //  What does "game finishes" mean?
         //  write 1 integration test, is that enough?
