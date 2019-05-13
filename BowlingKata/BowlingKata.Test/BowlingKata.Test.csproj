@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BowlingKata.Test</RootNamespace>
     <AssemblyName>BowlingKata.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -19,6 +19,7 @@
     <TestProjectType>UnitTest</TestProjectType>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,7 +53,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="PlayingAGame\GameTest.cs" />
+    <Compile Include="Infrastructure.cs" />
+    <Compile Include="GameTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,9 +62,16 @@
       <Project>{C18A3B61-986E-48C6-B321-02B8000D9437}</Project>
       <Name>BowlingKata</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Commons\Commons.csproj">
+      <Project>{59b0810e-a0d4-4676-8ef2-156b26b38334}</Project>
+      <Name>Commons</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PlayingAGame\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
