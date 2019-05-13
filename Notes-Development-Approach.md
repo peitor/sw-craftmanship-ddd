@@ -79,3 +79,27 @@ Next step: refactor to a "database" --> global state between bounded context (st
 
   And there was a bug in there.
   
+## Don't use a field in tests!   
+
+Example "gameFinishedEventCalledNumberOfTimes" --> Parallel runs? Avoid Threading issues!
+
+        [Test]
+        public void NoRolls_NotFinished()
+        {
+            ListenToEvents();
+            Assert.That(game.IsFinished == false);
+            Assert.That(gameFinishedEventCalledNumberOfTimes == 0);
+        }
+
+        private void ListenToEvents()
+        {
+            // call how often the event was called
+            gameFinishedEventCalledNumberOfTimes = 0;
+            game.GameFinished += GameFinishedCounter;
+        }
+		
+        int gameFinishedEventCalledNumberOfTimes;
+        private void GameFinishedCounter(GameFinishedData obj)
+        {
+            gameFinishedEventCalledNumberOfTimes++;
+        }
