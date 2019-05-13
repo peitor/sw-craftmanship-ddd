@@ -6,6 +6,7 @@ namespace BowlingKata
     {
         public bool IsFinished { get; private set; } = false;
         public Action<GameFinishedData> GameFinished { get; set; }
+        public string PlayerName { get; set; }
 
         private readonly int[] rolls = new int[21];
         private int currentRoll;

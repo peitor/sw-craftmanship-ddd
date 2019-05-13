@@ -330,6 +330,7 @@ namespace BowlingKata.Test
         [Test]
         public void TwelveStrikes_GameFinished_ReturnPlayerNameInEvent()
         {
+            game.PlayerName = "Peter";
             game.GameFinished += GameFinishedEventCalledHandler;
             12.Times(() => game.Roll(10));
             
@@ -358,11 +359,11 @@ namespace BowlingKata.Test
         {
             // call how often the event was called
             gameFinishedEventCalledNumberOfTimes = 0;
-            game.GameFinished += GameFinishedEventCalled;
+            game.GameFinished += GameFinishedCounter;
         }
 
         int gameFinishedEventCalledNumberOfTimes;
-        private void GameFinishedEventCalled(GameFinishedData obj)
+        private void GameFinishedCounter(GameFinishedData obj)
         {
             gameFinishedEventCalledNumberOfTimes++;
         }
