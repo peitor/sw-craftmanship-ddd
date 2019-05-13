@@ -4,6 +4,23 @@ using Commons;
 
 namespace BowlingKata.Test
 {
+    public class World
+    {
+        public GameSimulator gameSimulator = new GameSimulator();
+        public HallOfFame hallOfFame = new HallOfFame();
+        
+        public World()
+        {
+            // hook up delegate
+            gameSimulator.game.GameFinished += GameFinishedHappened;
+        }
+
+        private void GameFinishedHappened(int score)
+        {
+            Database.StoreGame(score);
+        }
+    }
+
     public static class Database
     {
         static readonly List<BowlingGame> database = new List<BowlingGame>();

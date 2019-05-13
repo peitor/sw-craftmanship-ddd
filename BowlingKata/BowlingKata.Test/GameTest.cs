@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
 using Commons;
+using NUnit.Framework;
 
-namespace BowlingKata.Test.PlayingAGame
+namespace BowlingKata.Test
 {
     public class TotalScoreAfterEndOfGame
     {
@@ -351,22 +349,5 @@ namespace BowlingKata.Test.PlayingAGame
         //  What does "game finishes" mean?
         //  write 1 integration test, is that enough?
 
-    }
-
-    public class World
-    {
-        public GameSimulator gameSimulator = new GameSimulator();
-        public HallOfFame hallOfFame = new HallOfFame();
-        
-        public World()
-        {
-            // hook up delegate
-            gameSimulator.game.GameFinished += GameFinishedHappened;
-        }
-
-        private void GameFinishedHappened(int score)
-        {
-            Database.StoreGame(score);
-        }
     }
 }
