@@ -15,9 +15,9 @@ namespace BowlingKata.Test
             gameSimulator.game.GameFinished += GameFinishedHappened;
         }
 
-        private void GameFinishedHappened(int score)
+        private void GameFinishedHappened(GameFinishedData gameFinishedData)
         {
-            Database.StoreGame(score);
+            Database.StoreGame(gameFinishedData.TotalScore);
         }
     }
 

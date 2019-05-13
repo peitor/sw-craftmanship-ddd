@@ -4,13 +4,13 @@ namespace BowlingKata
 {
     public class Game
     {
+        public bool IsFinished { get; private set; } = false;
+        public Action<GameFinishedData> GameFinished { get; set; }
+
         private readonly int[] rolls = new int[21];
         private int currentRoll;
 
-        public bool IsFinished { get; private set; } = false;
-
         private bool gameFinishedWasAlreadyCalled = false;
-        public Action<int> GameFinished { get; set; }
 
         public void Roll(int pins)
         {
@@ -105,9 +105,14 @@ namespace BowlingKata
                 && gameFinishedWasAlreadyCalled == false
             )
             {
-                GameFinished?.Invoke(scoreForFrame);
+                GameFinished?.Invoke(new GameFinishedData { TotalScore = scoreForFrame });
                 gameFinishedWasAlreadyCalled = true;
             }
         }
+    }
+
+    public class GameFinishedData
+    {
+        public int TotalScore { get; set; }
     }
 }

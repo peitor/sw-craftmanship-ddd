@@ -328,6 +328,21 @@ namespace BowlingKata.Test
         }
 
         [Test]
+        public void TwelveStrikes_GameFinished_ReturnPlayerNameInEvent()
+        {
+            game.GameFinished += GameFinishedEventCalledHandler;
+            12.Times(() => game.Roll(10));
+            
+            Assert.That(gameFinishedEventCalledNumberOfTimes == 1);
+        }
+
+        private void GameFinishedEventCalledHandler(GameFinishedData gameFinishedData)
+        {
+            
+
+        }
+
+        [Test]
         public void ASSUMPTION__ComplicatedGame_NotFinished()
         {
             //TODO: Sophisticated games could break the logic in the "return" statement?? <-- Assumption
@@ -347,7 +362,7 @@ namespace BowlingKata.Test
         }
 
         int gameFinishedEventCalledNumberOfTimes;
-        private void GameFinishedEventCalled(int obj)
+        private void GameFinishedEventCalled(GameFinishedData obj)
         {
             gameFinishedEventCalledNumberOfTimes++;
         }
