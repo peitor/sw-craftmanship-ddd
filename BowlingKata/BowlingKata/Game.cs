@@ -20,13 +20,7 @@ namespace BowlingKata
             {
                 IsFinished = Frame10HasValidScore();
 
-                if (IsFinished
-                    && gameFinishedWasAlreadyCalled == false
-                    )
-                {
-                    GameFinished?.Invoke(ScoreForFrame(10));
-                    gameFinishedWasAlreadyCalled = true;
-                }
+                RaiseGameFinishedEvent(ScoreForFrame(10));
             }
         }
 
@@ -103,6 +97,17 @@ namespace BowlingKata
         private bool MinimumRollsHappened()
         {
             return currentRoll >= 12;
+        }
+
+        private void RaiseGameFinishedEvent(int scoreForFrame)
+        {
+            if (IsFinished
+                && gameFinishedWasAlreadyCalled == false
+            )
+            {
+                GameFinished?.Invoke(scoreForFrame);
+                gameFinishedWasAlreadyCalled = true;
+            }
         }
     }
 }
