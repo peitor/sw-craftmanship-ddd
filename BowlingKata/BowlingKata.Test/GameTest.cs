@@ -1,28 +1,32 @@
 ﻿using System;
 using Commons;
+using FakeItEasy;
 using NUnit.Framework;
 
 namespace BowlingKata.Test
 {
-    public class TotalScoreAfterEndOfGame
+    public class TestInfraCommons
     {
-        private Game game;
-
-        [SetUp]
-        public void BeforeTest()
+        public static Game GivenNewGame()
         {
-            game = new Game();
+            var game = new Game();
+            return game;
         }
+    }
 
+    public class TotalScoreAfterEndOfGame : TestInfraCommons
+    {
         [Test]
         public void InitialScoreShouldBeZero()
         {
+            var game = GivenNewGame();
             Assert.AreEqual(0, game.TotalScore());
         }
 
         [Test]
         public void StrikesOnlyShouldReturn300()
         {
+            var game = GivenNewGame();
             12.Times(() => game.Roll(10));
             Assert.AreEqual(300, game.TotalScore());
         }
@@ -30,6 +34,7 @@ namespace BowlingKata.Test
         [Test]
         public void PairsOfNineAndMissShouldReturn90()
         {
+            var game = GivenNewGame();
             10.Times(() =>
             {
                 game.Roll(9);
@@ -42,6 +47,8 @@ namespace BowlingKata.Test
         [Test]
         public void FivesOnlyShouldReturn150()
         {
+            var game = GivenNewGame();
+
             21.Times(() => game.Roll(5));
 
             Assert.AreEqual(150, game.TotalScore());
@@ -50,25 +57,18 @@ namespace BowlingKata.Test
         [Test]
         public void RollingMoreThen21TimesShouldThrowException()
         {
+            var game = GivenNewGame();
+
             Assert.Throws<IndexOutOfRangeException>(() => 22.Times(() => game.Roll(5)));
         }
     }
 
-    public class ScoreBoardWhilePlaying
+    public class ScoreBoardWhilePlaying : TestInfraCommons
     {
-        private Game game;
-
-        [SetUp]
-        public void BeforeTest()
-        {
-            game = new Game();
-        }
-
-
         [Test]
         public void ScoreForFrame_OneRoll()
         {
-            var game = new Game();
+            var game = GivenNewGame();
             game.Roll(1);
 
             int score = game.ScoreForFrame(1);
@@ -79,6 +79,7 @@ namespace BowlingKata.Test
         [Test]
         public void ScoreForFrame_TwoRolls()
         {
+            var game = GivenNewGame();
             game.Roll(1);
             game.Roll(4);
 
@@ -90,6 +91,7 @@ namespace BowlingKata.Test
         [Test]
         public void ScoreForFrame_SpareInCurrentFrame_ScoreIsUnknown()
         {
+            var game = GivenNewGame();
             game.Roll(7);
             game.Roll(3);
 
@@ -101,6 +103,7 @@ namespace BowlingKata.Test
         [Test]
         public void ScoreForFrame_SpareInPreviousFrame_ScoreIsKnown()
         {
+            var game = GivenNewGame();
             game.Roll(7);
             game.Roll(3);
 
@@ -117,6 +120,7 @@ namespace BowlingKata.Test
         [Test]
         public void ScoreForFrame_Strike_ScoreIsUnknown()
         {
+            var game = GivenNewGame();
             game.Roll(10);
 
             int scoreForFrame1 = game.ScoreForFrame(1);
@@ -127,6 +131,7 @@ namespace BowlingKata.Test
         [Test]
         public void ScoreForFrame_StrikeInPreviousFrame_FirstRoll_ScoreIsUnknown()
         {
+            var game = GivenNewGame();
             game.Roll(10);
             game.Roll(2);
 
@@ -140,6 +145,7 @@ namespace BowlingKata.Test
         [Test]
         public void ScoreForFrame_StrikeInPreviousFrame_SecondRoll_ScoreIsKnown()
         {
+            var game = GivenNewGame();
             game.Roll(10);
 
             game.Roll(2);
@@ -155,6 +161,7 @@ namespace BowlingKata.Test
         [Test]
         public void ScoreForFrame_TwoStrikes_ScoreIsUnknown()
         {
+            var game = GivenNewGame();
             game.Roll(10);
             game.Roll(10);
 
@@ -168,6 +175,7 @@ namespace BowlingKata.Test
         [Test]
         public void ScoreForFrame_TwoStrikes_FirstRollInThirdFrame_ScoreIsUnknown()
         {
+            var game = GivenNewGame();
             game.Roll(10);
             game.Roll(10);
             game.Roll(2);
@@ -184,6 +192,7 @@ namespace BowlingKata.Test
         [Test]
         public void ScoreForFrame_TwoStrikes_SecondRollInThirdFrame_ScoreIsKnown()
         {
+            var game = GivenNewGame();
             game.Roll(10);
             game.Roll(10);
             game.Roll(2);
@@ -201,6 +210,7 @@ namespace BowlingKata.Test
         [Test]
         public void ScoreForFrame_SpareAfterAStrike_ScoreIsUnknown()
         {
+            var game = GivenNewGame();
             game.Roll(10);
 
             game.Roll(3);
@@ -216,6 +226,7 @@ namespace BowlingKata.Test
         [Test]
         public void ScoreForFrame_StrikeSpareRoll_ScoreIsKnown()
         {
+            var game = GivenNewGame();
             game.Roll(10);
 
             game.Roll(3);
@@ -235,6 +246,7 @@ namespace BowlingKata.Test
         [Test]
         public void ScoreForFrame_Spare_FirstRollInSecondFrame_ScoreIsKnown()
         {
+            var game = GivenNewGame();
             game.Roll(3);
             game.Roll(7);
 
@@ -248,19 +260,12 @@ namespace BowlingKata.Test
         }
     }
 
-    public class GameFinishesDetection
+    public class GameFinishesDetection : TestInfraCommons
     {
-        private Game game;
-
-        [SetUp]
-        public void BeforeTest()
-        {
-            game = new Game();
-        }
-
         [Test]
         public void TwoRolls_NotFinished()
         {
+            var game = GivenNewGame();
             game.Roll(1);
             game.Roll(1);
 
@@ -270,6 +275,7 @@ namespace BowlingKata.Test
         [Test]
         public void EightRolls_NotFinished()
         {
+            var game = GivenNewGame();
             8.Times(() => game.Roll(10));
 
             Assert.That(game.IsFinished == false);
@@ -278,6 +284,7 @@ namespace BowlingKata.Test
         [Test]
         public void TwelveStrikes_GameFinished()
         {
+            var game = GivenNewGame();
             12.Times(() => game.Roll(10));
             Assert.That(game.IsFinished);
         }
@@ -285,23 +292,27 @@ namespace BowlingKata.Test
         [Test]
         public void TwelveStrikes_GameFinished_EventsRaised()
         {
-            ListenToEvents();
+            var game = GivenNewGameWith(out var gameFinishedHandler);
+
             12.Times(() => game.Roll(10));
-            Assert.That(gameFinishedEventCalledNumberOfTimes == 1);
+
+            A.CallTo(gameFinishedHandler).MustHaveHappenedOnceExactly();
         }
 
         [Test]
         public void ThirteenStrikes_GameFinished_EventsRaised()
         {
-            ListenToEvents();
+            var game = GivenNewGameWith(out var gameFinishedHandler);
+
             13.Times(() => game.Roll(10));
-            Assert.AreEqual(1, gameFinishedEventCalledNumberOfTimes);
+            A.CallTo(gameFinishedHandler).MustHaveHappenedOnceExactly();
         }
 
 
         [Test]
         public void PairsOfNineAndMissShouldReturn90()
         {
+            var game = GivenNewGame();
             5.Times(() =>
             {
                 game.Roll(9);
@@ -322,22 +333,33 @@ namespace BowlingKata.Test
         [Test]
         public void NoRolls_NotFinished()
         {
-            ListenToEvents();
+            var game = GivenNewGame();
+            var gameFinishedHandler = A.Fake<Action<GameFinishedData>>();
+            game.GameFinished += gameFinishedHandler;
             Assert.That(game.IsFinished == false);
-            Assert.That(gameFinishedEventCalledNumberOfTimes == 0);
+            A.CallTo(gameFinishedHandler).MustNotHaveHappened();
         }
 
         [Test]
         public void TwelveStrikes_GameFinished_ReturnPlayerNameInEvent()
         {
-            game.PlayerName = "Peter";
+            var game = new Game { PlayerName = "Peter" };
             game.GameFinished += GameFinishedEventCalledHandler;
             12.Times(() => game.Roll(10));
-            
+
             Assert.AreEqual(received.PlayerName, "Peter");
         }
 
         private GameFinishedData received;
+
+        private static Game GivenNewGameWith(out Action<GameFinishedData> gameFinishedHandler)
+        {
+            var game = GivenNewGame();
+            gameFinishedHandler = A.Fake<Action<GameFinishedData>>();
+            game.GameFinished += gameFinishedHandler;
+            return game;
+        }
+
         private void GameFinishedEventCalledHandler(GameFinishedData gameFinishedData)
         {
             received = gameFinishedData;
@@ -346,6 +368,7 @@ namespace BowlingKata.Test
         [Test]
         public void ASSUMPTION__ComplicatedGame_NotFinished()
         {
+            var game = GivenNewGame();
             //TODO: Sophisticated games could break the logic in the "return" statement?? <-- Assumption
             13.Times(() => game.Roll(1));
 
@@ -353,19 +376,6 @@ namespace BowlingKata.Test
             game.Roll(1);
             // TODO: play around here with this....
             Assert.That(game.IsFinished == false);
-        }
-
-        private void ListenToEvents()
-        {
-            // call how often the event was called
-            gameFinishedEventCalledNumberOfTimes = 0;
-            game.GameFinished += GameFinishedCounter;
-        }
-
-        int gameFinishedEventCalledNumberOfTimes;
-        private void GameFinishedCounter(GameFinishedData obj)
-        {
-            gameFinishedEventCalledNumberOfTimes++;
         }
     }
 
