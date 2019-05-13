@@ -106,7 +106,11 @@ namespace BowlingKata
                 && gameFinishedWasAlreadyCalled == false
             )
             {
-                GameFinished?.Invoke(new GameFinishedData { TotalScore = scoreForFrame });
+                GameFinished?.Invoke(new GameFinishedData
+                {
+                    TotalScore = scoreForFrame,
+                    PlayerName = PlayerName,
+                });
                 gameFinishedWasAlreadyCalled = true;
             }
         }
@@ -115,5 +119,6 @@ namespace BowlingKata
     public class GameFinishedData
     {
         public int TotalScore { get; set; }
+        public string PlayerName { get; set; }
     }
 }

@@ -334,13 +334,13 @@ namespace BowlingKata.Test
             game.GameFinished += GameFinishedEventCalledHandler;
             12.Times(() => game.Roll(10));
             
-            Assert.That(gameFinishedEventCalledNumberOfTimes == 1);
+            Assert.AreEqual(received.PlayerName, "Peter");
         }
 
+        private GameFinishedData received;
         private void GameFinishedEventCalledHandler(GameFinishedData gameFinishedData)
         {
-            
-
+            received = gameFinishedData;
         }
 
         [Test]
