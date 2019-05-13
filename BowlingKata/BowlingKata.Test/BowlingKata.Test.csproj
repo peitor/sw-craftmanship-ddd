@@ -59,6 +59,7 @@
     <Compile Include="Infrastructure.cs" />
     <Compile Include="GameTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestCommons.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BowlingKata\BowlingKata.csproj">

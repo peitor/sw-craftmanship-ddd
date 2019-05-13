@@ -5,16 +5,7 @@ using NUnit.Framework;
 
 namespace BowlingKata.Test
 {
-    public class TestInfraCommons
-    {
-        public static Game GivenNewGame()
-        {
-            var game = new Game();
-            return game;
-        }
-    }
-
-    public class TotalScoreAfterEndOfGame : TestInfraCommons
+    public class TotalScoreAfterEndOfGame : TestCommons
     {
         [Test]
         public void InitialScoreShouldBeZero()
@@ -63,7 +54,7 @@ namespace BowlingKata.Test
         }
     }
 
-    public class ScoreBoardWhilePlaying : TestInfraCommons
+    public class ScoreBoardWhilePlaying : TestCommons
     {
         [Test]
         public void ScoreForFrame_OneRoll()
@@ -260,7 +251,7 @@ namespace BowlingKata.Test
         }
     }
 
-    public class GameFinishesDetection : TestInfraCommons
+    public class GameFinishesDetection : TestCommons
     {
         [Test]
         public void TwoRolls_NotFinished()
@@ -292,23 +283,31 @@ namespace BowlingKata.Test
         [Test]
         public void TwelveStrikes_GameFinished_EventsRaised()
         {
-            var game = GivenNewGameWith(out var gameFinishedHandler);
+            var game = GivenNewGame();
+            var gameFinishedHandler = GivenEventFinishedHandler(game);
 
             12.Times(() => game.Roll(10));
 
             A.CallTo(gameFinishedHandler).MustHaveHappenedOnceExactly();
         }
 
+        private static Action<GameFinishedData> GivenEventFinishedHandler(Game game)
+        {
+            var gameFinishedHandler = A.Fake<Action<GameFinishedData>>();
+            game.GameFinished += gameFinishedHandler;
+            return gameFinishedHandler;
+        }
+
         [Test]
         public void ThirteenStrikes_GameFinished_EventsRaised()
         {
-            var game = GivenNewGameWith(out var gameFinishedHandler);
+            var game = GivenNewGame();
+            var gameFinishedHandler = GivenEventFinishedHandler(game);
 
             13.Times(() => game.Roll(10));
             A.CallTo(gameFinishedHandler).MustHaveHappenedOnceExactly();
         }
-
-
+        
         [Test]
         public void PairsOfNineAndMissShouldReturn90()
         {
@@ -328,14 +327,13 @@ namespace BowlingKata.Test
 
             Assert.That(game.IsFinished);
         }
-
-
+        
         [Test]
         public void NoRolls_NotFinished()
         {
             var game = GivenNewGame();
-            var gameFinishedHandler = A.Fake<Action<GameFinishedData>>();
-            game.GameFinished += gameFinishedHandler;
+            var gameFinishedHandler = GivenEventFinishedHandler(game);
+
             Assert.That(game.IsFinished == false);
             A.CallTo(gameFinishedHandler).MustNotHaveHappened();
         }
@@ -351,14 +349,6 @@ namespace BowlingKata.Test
         }
 
         private GameFinishedData received;
-
-        private static Game GivenNewGameWith(out Action<GameFinishedData> gameFinishedHandler)
-        {
-            var game = GivenNewGame();
-            gameFinishedHandler = A.Fake<Action<GameFinishedData>>();
-            game.GameFinished += gameFinishedHandler;
-            return game;
-        }
 
         private void GameFinishedEventCalledHandler(GameFinishedData gameFinishedData)
         {
