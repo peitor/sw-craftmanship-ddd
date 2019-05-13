@@ -17,14 +17,14 @@ namespace BowlingKata.Test
         [Test]
         public void InitialScoreShouldBeZero()
         {
-            Assert.AreEqual(0, game.Score());
+            Assert.AreEqual(0, game.TotalScore());
         }
 
         [Test]
         public void StrikesOnlyShouldReturn300()
         {
             12.Times(() => game.Roll(10));
-            Assert.AreEqual(300, game.Score());
+            Assert.AreEqual(300, game.TotalScore());
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace BowlingKata.Test
                 game.Roll(0);
             });
 
-            Assert.AreEqual(90, game.Score());
+            Assert.AreEqual(90, game.TotalScore());
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace BowlingKata.Test
         {
             21.Times(() => game.Roll(5));
 
-            Assert.AreEqual(150, game.Score());
+            Assert.AreEqual(150, game.TotalScore());
         }
 
         [Test]

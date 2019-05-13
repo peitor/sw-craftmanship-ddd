@@ -30,7 +30,7 @@ namespace BowlingKata
             }
         }
 
-        public int Score()
+        public int TotalScore()
         {
             return ScoreForFrame(10);
         }
