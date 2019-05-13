@@ -8,7 +8,7 @@ namespace BowlingKata
         private int currentRoll;
 
         public bool IsFinished { get; private set; } = false;
-        
+
         private bool gameFinishedWasAlreadyCalled = false;
         public Action<int> GameFinished { get; set; }
 
@@ -20,10 +20,12 @@ namespace BowlingKata
             {
                 IsFinished = Frame10HasValidScore();
 
-                if (IsFinished 
-                    && gameFinishedWasAlreadyCalled == false)
+                if (IsFinished
+                    && gameFinishedWasAlreadyCalled == false
+                    )
                 {
                     GameFinished?.Invoke(ScoreForFrame(10));
+                    gameFinishedWasAlreadyCalled = true;
                 }
             }
         }

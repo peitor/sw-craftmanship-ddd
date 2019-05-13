@@ -53,7 +53,7 @@ namespace BowlingKata.Test
             Assert.Throws<IndexOutOfRangeException>(() => 22.Times(() => game.Roll(5)));
         }
     }
-    
+
     public class ScoreBoardWhilePlaying
     {
         private Game game;
@@ -282,6 +282,22 @@ namespace BowlingKata.Test
             Assert.That(game.IsFinished);
         }
 
+        [Test]
+        public void TwelveStrikes_GameFinished_EventsRaised()
+        {
+            ListenToEvents();
+            12.Times(() => game.Roll(10));
+            Assert.That(gameFinishedEventCalledNumberOfTimes == 1);
+        }
+
+        [Test]
+        public void ThirteenStrikes_GameFinished_EventsRaised()
+        {
+            ListenToEvents();
+            13.Times(() => game.Roll(10));
+            Assert.AreEqual(1, gameFinishedEventCalledNumberOfTimes);
+        }
+
 
         [Test]
         public void PairsOfNineAndMissShouldReturn90()
@@ -306,7 +322,9 @@ namespace BowlingKata.Test
         [Test]
         public void NoRolls_NotFinished()
         {
+            ListenToEvents();
             Assert.That(game.IsFinished == false);
+            Assert.That(gameFinishedEventCalledNumberOfTimes == 0);
         }
 
         [Test]
@@ -321,7 +339,18 @@ namespace BowlingKata.Test
             Assert.That(game.IsFinished == false);
         }
 
+        private void ListenToEvents()
+        {
+            // call how often the event was called
+            gameFinishedEventCalledNumberOfTimes = 0;
+            game.GameFinished += GameFinishedEventCalled;
+        }
 
+        int gameFinishedEventCalledNumberOfTimes;
+        private void GameFinishedEventCalled(int obj)
+        {
+            gameFinishedEventCalledNumberOfTimes++;
+        }
     }
 
     public class VisualizeHallOfFame

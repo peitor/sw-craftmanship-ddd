@@ -71,3 +71,11 @@ Next step: refactor to a "database" --> global state between bounded context (st
   * The raising of the event is in the Game.  
   * The raise event is probably buggy and broken.
   * The world hooks up events... Is that responsibility of the world?
+
+    
+# Continuation on 2019-05-13
+  
+## Fix raising event code in Game -> Separation of Concerns (SoC).
+
+  And there was a bug in there.
+  
