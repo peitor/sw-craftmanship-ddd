@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Commons;
 using FakeItEasy;
 using NUnit.Framework;
@@ -291,13 +292,6 @@ namespace BowlingKata.Test
             A.CallTo(gameFinishedHandler).MustHaveHappenedOnceExactly();
         }
 
-        private static Action<GameFinishedData> GivenEventFinishedHandler(Game game)
-        {
-            var gameFinishedHandler = A.Fake<Action<GameFinishedData>>();
-            game.GameFinished += gameFinishedHandler;
-            return gameFinishedHandler;
-        }
-
         [Test]
         public void ThirteenStrikes_GameFinished_EventsRaised()
         {
@@ -342,19 +336,18 @@ namespace BowlingKata.Test
         public void TwelveStrikes_GameFinished_ReturnPlayerNameInEvent()
         {
             var game = new Game { PlayerName = "Peter" };
-            game.GameFinished += GameFinishedEventCalledHandler;
+
+            var gameFinishedHandler = A.Fake<Action<GameFinishedData>>();
+            game.GameFinished += gameFinishedHandler;
+            
             12.Times(() => game.Roll(10));
 
-            Assert.AreEqual(received.PlayerName, "Peter");
+
+            var gameFinishedDataForFirstCall = Fake.GetCalls(gameFinishedHandler).First().ArgumentsAfterCall[0] as GameFinishedData;
+            Assert.AreEqual(gameFinishedDataForFirstCall.PlayerName, 
+                "Peter");
         }
-
-        private GameFinishedData received;
-
-        private void GameFinishedEventCalledHandler(GameFinishedData gameFinishedData)
-        {
-            received = gameFinishedData;
-        }
-
+        
         [Test]
         public void ASSUMPTION__ComplicatedGame_NotFinished()
         {
