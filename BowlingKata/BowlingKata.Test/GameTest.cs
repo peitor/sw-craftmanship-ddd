@@ -375,8 +375,27 @@ namespace BowlingKata.Test
         public void OneGameFinished_SeeIt()
         {
             var world = new World();
-            world.gameSimulator.FinishGame();
+            HookUpAndSimulateFinishedGame(world.GameFinishedHappened);
+
             Assert.AreEqual(1, world.hallOfFame.Length);
+        }
+
+        [Test]
+        public void GivenFullHallOfFame_NewLowScoreGameFinishes_NoImpact()
+        {
+            var world = new World();
+            HookUpAndSimulateFinishedGame(world.GameFinishedHappened);
+            HookUpAndSimulateFinishedGame(world.GameFinishedHappened);
+            HookUpAndSimulateFinishedGame(world.GameFinishedHappened);
+
+            Assert.AreEqual(3, world.hallOfFame.Length);
+        }
+
+        private static void HookUpAndSimulateFinishedGame(Action<GameFinishedData> gameFinished)
+        {
+            var game = new Game();
+            game.GameFinished += gameFinished;
+            12.Times(() => game.Roll(10));
         }
     }
 }
