@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Commons;
-using FakeItEasy;
+using NSubstitute;
+using NSubstitute.Core.Arguments;
+using NSubstitute.ReceivedExtensions;
 using NUnit.Framework;
 
 namespace BowlingKata.Test
@@ -289,7 +291,8 @@ namespace BowlingKata.Test
 
             12.Times(() => game.Roll(10));
 
-            A.CallTo(gameFinishedHandler).MustHaveHappenedOnceExactly();
+            gameFinishedHandler.Received(1).Invoke(Arg.Any<GameFinishedData>());
+
         }
 
         [Test]
@@ -299,9 +302,10 @@ namespace BowlingKata.Test
             var gameFinishedHandler = GivenEventFinishedHandler(game);
 
             13.Times(() => game.Roll(10));
-            A.CallTo(gameFinishedHandler).MustHaveHappenedOnceExactly();
+
+            gameFinishedHandler.Received(1).Invoke(Arg.Any<GameFinishedData>());
         }
-        
+
         [Test]
         public void PairsOfNineAndMissShouldReturn90()
         {
@@ -321,7 +325,7 @@ namespace BowlingKata.Test
 
             Assert.That(game.IsFinished);
         }
-        
+
         [Test]
         public void NoRolls_NotFinished()
         {
@@ -329,25 +333,21 @@ namespace BowlingKata.Test
             var gameFinishedHandler = GivenEventFinishedHandler(game);
 
             Assert.That(game.IsFinished == false);
-            A.CallTo(gameFinishedHandler).MustNotHaveHappened();
+
+            gameFinishedHandler.DidNotReceive().Invoke(Arg.Any<GameFinishedData>());
         }
 
         [Test]
         public void TwelveStrikes_GameFinished_ReturnPlayerNameInEvent()
         {
             var game = new Game { PlayerName = "Peter" };
+            var gameFinishedHandler = GivenEventFinishedHandler(game);
 
-            var gameFinishedHandler = A.Fake<Action<GameFinishedData>>();
-            game.GameFinished += gameFinishedHandler;
-            
             12.Times(() => game.Roll(10));
-
-
-            var gameFinishedDataForFirstCall = Fake.GetCalls(gameFinishedHandler).First().ArgumentsAfterCall[0] as GameFinishedData;
-            Assert.AreEqual(gameFinishedDataForFirstCall.PlayerName, 
-                "Peter");
+             
+            gameFinishedHandler.Received(1).Invoke(Arg.Is<GameFinishedData>(data => data.PlayerName == "Peter"));
         }
-        
+
         [Test]
         public void ASSUMPTION__ComplicatedGame_NotFinished()
         {
@@ -378,14 +378,6 @@ namespace BowlingKata.Test
             world.gameSimulator.FinishGame();
             Assert.AreEqual(1, world.hallOfFame.Length);
         }
-
-        //  TODO LIST:
-        //  3 top games finished, 1 new top game finishes -> assert on result
-        // 
-        //  Simulate games and verify if we really see the final topscore --> Assumption event gets raised too early.
-        //  DISCUSSION: 
-        //  What does "game finishes" mean?
-        //  write 1 integration test, is that enough?
 
     }
 }

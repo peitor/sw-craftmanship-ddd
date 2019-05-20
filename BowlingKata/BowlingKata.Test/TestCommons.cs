@@ -1,5 +1,5 @@
 ﻿using System;
-using FakeItEasy;
+using NSubstitute;
 
 namespace BowlingKata.Test
 {
@@ -13,7 +13,7 @@ namespace BowlingKata.Test
 
         public static Action<GameFinishedData> GivenEventFinishedHandler(Game game)
         {
-            var gameFinishedHandler = A.Fake<Action<GameFinishedData>>();
+            var gameFinishedHandler = Substitute.For<Action<GameFinishedData>>();
             game.GameFinished += gameFinishedHandler;
             return gameFinishedHandler;
         }

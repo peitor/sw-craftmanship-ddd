@@ -112,7 +112,9 @@ Every test gets its own instance of "new Game()".
 
 # What is ugly at the moment? 2019-05-13
 
-  * The assert in FakeItEasy is ugly. See TwelveStrikes_GameFinished_ReturnPlayerNameInEvent.  -> https://nsubstitute.github.io/help/received-calls/		 better?
-  * The raising of the event is in the Game.  
+  * The raising of the event is still in the Game.  
   * The world hooks up events... Is that responsibility of the world?
 
+
+## Decision 
+Replace FakeItEasy with Nsubstitute. Nicer Asserts on Action methods.
