@@ -378,6 +378,5 @@ namespace BowlingKata.Test
             world.gameSimulator.FinishGame();
             Assert.AreEqual(1, world.hallOfFame.Length);
         }
-
     }
 }

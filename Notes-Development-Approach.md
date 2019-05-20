@@ -110,11 +110,20 @@ Every test gets its own instance of "new Game()".
 
 
 
+
+## Decision 
+Replace FakeItEasy with Nsubstitute. Nicer Asserts on Action methods.
+
+# TODO LIST 
+  * 3 top games finished, 1 new top game finishes -> assert on result
+  * Simulate games and verify if we really see the final topscore --> Assumption event gets raised too early.
+  
+  * DISCUSSION: 
+  *    What does "game finishes" mean?
+  *    write 1 integration test, is that enough?
+
 # What is ugly at the moment? 2019-05-13
 
   * The raising of the event is still in the Game.  
   * The world hooks up events... Is that responsibility of the world?
 
-
-## Decision 
-Replace FakeItEasy with Nsubstitute. Nicer Asserts on Action methods.
