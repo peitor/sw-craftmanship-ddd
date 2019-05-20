@@ -121,9 +121,10 @@ Replace FakeItEasy with Nsubstitute. Nicer Asserts on Action methods.
   * DISCUSSION: 
   *    What does "game finishes" mean?
   *    write 1 integration test, is that enough?
-
-# What is ugly at the moment? 2019-05-13
+  
+  
+What is ugly at the moment? 
 
   * The raising of the event is still in the Game.  
-  * The world hooks up events... Is that responsibility of the world?
+  * The static Database behaves like a database. Parallel test runs fail. Sounds familiar? :)
 
