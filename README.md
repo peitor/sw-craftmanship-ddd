@@ -12,19 +12,22 @@ Uncle Bob said:
   _"Excellent question! It's because we could not see how simple the solution really was when we drew that design!"_ 
  
 Uncle Bob had 1 bounded context if you will:
-Bowler plays a game and rolls the ball.
+
+## Bowler plays a game and rolls the ball.
+![Bowler rolls ball](images/01-play-game-2019-05-29%2009_35_43-DDD%20workshop.png)
 
 
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-![peter](images/01-play-game-2019-05-29 09_35_43-DDD workshop.png)
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-![peter](images/01-play-game-2019-05-29%2009_35_43-DDD%20workshop.png)
-
-
-# 2 new features 
+# We added 2 new features 
 This extension adds to Uncle Bobs approach a 
- * Hall Of Fame
- * Running Scoreboard  
+## Running Scoreboard  
+![Scoreboard](images/02-scoreboard-2019-05-29%2009_36_00-DDD%20workshop.png)
+
+## Hall Of Fame
+![Hall Of Fame](images/03-hall-of-fame-2019-05-29%2009_36_20-DDD%20workshop.png)
+
+The final context map looks like this:
+![Overall Context Map](images/04-context-map-2019-05-29%2009_35_21-DDD%20workshop.png)
+
 
 # Progress
 My thinking and progress can be monitored via the commit messages and here [Notes-Development-Approach.md](Notes-Development-Approach.md).
