@@ -11,6 +11,11 @@ Someone asked:
 Uncle Bob said:  
   _"Excellent question! It's because we could not see how simple the solution really was when we drew that design!"_ 
  
+Uncle Bob had 1 bounded context if you will:
+  
+  ![Bowler plays a game and rolls the ball](/images/01-play-game-2019-05-29 09_35_43-DDD workshop.png)
+
+
 # 2 new features 
 This extension adds to Uncle Bobs approach a 
  * Hall Of Fame
