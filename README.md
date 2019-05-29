@@ -18,7 +18,7 @@ Bowler plays a game and rolls the ball.
 ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 ![peter](images/01-play-game-2019-05-29 09_35_43-DDD workshop.png)
 ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-![peter](images/01-play-game-2019-05-29 09_35_43-DDD workshop.png)
+![peter](images/01-play-game-2019-05-29%2009_35_43-DDD%20workshop.png)
 
 
 # 2 new features 
