@@ -25,6 +25,7 @@ This extension adds to Uncle Bobs approach a
 ## Hall Of Fame
 ![Hall Of Fame](images/03-hall-of-fame-2019-05-29%2009_36_20-DDD%20workshop.png)
 
+## Context Map
 The final context map looks like this:
 ![Overall Context Map](images/04-context-map-2019-05-29%2009_35_21-DDD%20workshop.png)
 
