@@ -15,10 +15,10 @@ Uncle Bob had 1 bounded context if you will:
 Bowler plays a game and rolls the ball.
 
 
-
-![](images/01-play-game-2019-05-29 09_35_43-DDD workshop.png)
-
-
+![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![peter](images/01-play-game-2019-05-29 09_35_43-DDD workshop.png)
+![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![peter](images/01-play-game-2019-05-29 09_35_43-DDD workshop.png)
 
 
 # 2 new features 
