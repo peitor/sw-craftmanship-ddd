@@ -367,6 +367,8 @@ namespace BowlingKata.Test
         [Test]
         public void NoGame_NoHallOfFame()
         {
+            Config.ConnectionString = "NoGame_NoHallOfFame";
+
             var world = new HallOfFameHook();
             Assert.AreEqual(0, world.hallOfFame.Length);
         }
@@ -374,6 +376,8 @@ namespace BowlingKata.Test
         [Test]
         public void OneGameFinished_SeeIt()
         {
+            Config.ConnectionString = "OneGameFinished_SeeIt";
+
             var world = new HallOfFameHook();
             
             var hallOfFameLength = world.hallOfFame.Length;
@@ -385,6 +389,8 @@ namespace BowlingKata.Test
         [Test]
         public void GivenFullHallOfFame_NewLowScoreGameFinishes_NoImpact()
         {
+            Config.ConnectionString = "GivenFullHallOfFame_NewLowScoreGameFinishes_NoImpact";
+
             var world = new HallOfFameHook();
             HookUpAndSimulateFinishedGame(world.GameFinishedHappened);
             HookUpAndSimulateFinishedGame(world.GameFinishedHappened);

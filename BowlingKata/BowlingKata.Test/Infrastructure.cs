@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
 using System.Linq;
+using Castle.Core.Resource;
 
 namespace BowlingKata.Test
 {
@@ -9,31 +10,30 @@ namespace BowlingKata.Test
         
         public void GameFinishedHappened(GameFinishedData gameFinishedData)
         {
-            HallOfFameRepository.StoreGame(gameFinishedData.TotalScore);
+            new HallOfFameRepository().StoreGame(gameFinishedData.TotalScore);
         }
     }
 
     public class HallOfFame
     {
-        public int Length => HallOfFameRepository.GetAllGames().Count();
+        public int Length => new HallOfFameRepository().GetAllGames().Count();
     }
 
-    public static class HallOfFameRepository
+    public class HallOfFameRepository
     {
-        static readonly List<BowlingGame> games = new List<BowlingGame>();
-        
-        public static void StoreGame(int score)
+        public void StoreGame(int score)
         {
-            games.Add(new BowlingGame(score));
+            Database.Add("HallOfFameGames", new BowlingGame(score));
         }
 
-        public static BowlingGame[] GetAllGames()
+        public BowlingGame[] GetAllGames()
         {
-            return games.ToArray();
+            return Database.GetAll<BowlingGame>(tablename: "HallOfFameGames");
         }
     }
 
-    public class BowlingGame
+
+    public class BowlingGame : DatabaseMetadata
     {
         private readonly int _score;
 

@@ -129,9 +129,29 @@ What is ugly at the moment?
   * The static Database behaves like a database. Parallel test runs fail. Sounds familiar? :)
 
   
+---  
+
+  
+
 # Self Reflection 2019-06-28 (2 months later since last work)
 
 It took me a while to understand how the code works :/
+I started to read by refactoring :)
+
+
+
+## Issue found: Code Smell
+Found 1 issue in Game and annotated with TODO. 
+  
+       // TODO: FIXME: ASAP!  This call is important. 
+       IsFinished = Frame10HasValidScore();
+
+## Fixed global state issue, that caused to fail parallel test runs.
+
+Issue: Shared state causes tests to sometime work and sometimes not!
+Parallel change to introduce a "Database" and a "Config.ConnectionString". 
+
+The "Config.Connectionstring" allows tests (and users) to specify which database to use and have their own database. 
 
 
 
