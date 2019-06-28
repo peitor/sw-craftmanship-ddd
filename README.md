@@ -1,5 +1,5 @@
 # A DDD Approach to Uncle Bobs Bowling Kata
-We used the BowlingKata from Uncle Bob which is OO only and extended the code with 2 new features in a DDD approach.
+We used the BowlingKata from Uncle Bob which is OO only and extended the code with 2 new features in a Domain Driven Design approach.
    
 Here you see the approach from Uncle Bob  
 http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata   
