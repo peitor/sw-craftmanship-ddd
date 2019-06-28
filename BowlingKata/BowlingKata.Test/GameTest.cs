@@ -367,7 +367,7 @@ namespace BowlingKata.Test
         [Test]
         public void NoGame_NoHallOfFame()
         {
-            Config.ConnectionString = "NoGame_NoHallOfFame";
+            Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
             var world = new HallOfFameHook();
             Assert.AreEqual(0, world.hallOfFame.Length);
@@ -376,12 +376,12 @@ namespace BowlingKata.Test
         [Test]
         public void OneGameFinished_SeeIt()
         {
-            Config.ConnectionString = "OneGameFinished_SeeIt";
+            Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
             var world = new HallOfFameHook();
             
             var hallOfFameLength = world.hallOfFame.Length;
-            HookUpAndSimulateFinishedGame(world.GameFinishedHappened);
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
 
             Assert.True(world.hallOfFame.Length > hallOfFameLength);
         }
@@ -389,17 +389,17 @@ namespace BowlingKata.Test
         [Test]
         public void GivenFullHallOfFame_NewLowScoreGameFinishes_NoImpact()
         {
-            Config.ConnectionString = "GivenFullHallOfFame_NewLowScoreGameFinishes_NoImpact";
-
+            Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
             var world = new HallOfFameHook();
-            HookUpAndSimulateFinishedGame(world.GameFinishedHappened);
-            HookUpAndSimulateFinishedGame(world.GameFinishedHappened);
-            HookUpAndSimulateFinishedGame(world.GameFinishedHappened);
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
 
             Assert.AreEqual(3, world.hallOfFame.Length);
         }
 
-        private static void HookUpAndSimulateFinishedGame(Action<GameFinishedData> gameFinished)
+
+        private static void HookUpAndSimulatePerfectGame(Action<GameFinishedData> gameFinished)
         {
             var game = new Game();
             game.GameFinished += gameFinished;
