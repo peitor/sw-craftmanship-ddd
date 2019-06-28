@@ -3,28 +3,33 @@ using System.Linq;
 
 namespace BowlingKata.Test
 {
-    public class World
+    public class HallOfFameHook
     {
         public HallOfFame hallOfFame = new HallOfFame();
         
         public void GameFinishedHappened(GameFinishedData gameFinishedData)
         {
-            Database.StoreGame(gameFinishedData.TotalScore);
+            HallOfFameRepository.StoreGame(gameFinishedData.TotalScore);
         }
     }
 
-    public static class Database
+    public class HallOfFame
     {
-        static readonly List<BowlingGame> database = new List<BowlingGame>();
+        public int Length => HallOfFameRepository.GetAllGames().Count();
+    }
+
+    public static class HallOfFameRepository
+    {
+        static readonly List<BowlingGame> games = new List<BowlingGame>();
         
         public static void StoreGame(int score)
         {
-            database.Add(new BowlingGame(score));
+            games.Add(new BowlingGame(score));
         }
 
         public static BowlingGame[] GetAllGames()
         {
-            return database.ToArray();
+            return games.ToArray();
         }
     }
 
@@ -37,8 +42,4 @@ namespace BowlingKata.Test
             _score = score;
         }
     }
-
-    public class HallOfFame
-    {
-        public int Length => Database.GetAllGames().Count();
-    }}
+}

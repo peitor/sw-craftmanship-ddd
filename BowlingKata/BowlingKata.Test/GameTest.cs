@@ -367,23 +367,25 @@ namespace BowlingKata.Test
         [Test]
         public void NoGame_NoHallOfFame()
         {
-            var world = new World();
+            var world = new HallOfFameHook();
             Assert.AreEqual(0, world.hallOfFame.Length);
         }
 
         [Test]
         public void OneGameFinished_SeeIt()
         {
-            var world = new World();
+            var world = new HallOfFameHook();
+            
+            var hallOfFameLength = world.hallOfFame.Length;
             HookUpAndSimulateFinishedGame(world.GameFinishedHappened);
 
-            Assert.AreEqual(1, world.hallOfFame.Length);
+            Assert.True(world.hallOfFame.Length > hallOfFameLength);
         }
 
         [Test]
         public void GivenFullHallOfFame_NewLowScoreGameFinishes_NoImpact()
         {
-            var world = new World();
+            var world = new HallOfFameHook();
             HookUpAndSimulateFinishedGame(world.GameFinishedHappened);
             HookUpAndSimulateFinishedGame(world.GameFinishedHappened);
             HookUpAndSimulateFinishedGame(world.GameFinishedHappened);
