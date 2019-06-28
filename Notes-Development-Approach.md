@@ -159,6 +159,8 @@ The "Config.Connectionstring" allows tests (and users) to specify which database
 
 # TODO
 
+  * Scoreboard should not use the Game, but have its own. Separate Bounded Contexts!
+    Start with ScoreBoard_VerifyWhilePlaying.  
   * The raising of the event is still in the Game.  
   * TODOs in code.
   * Scoreboard simulation in tests.
