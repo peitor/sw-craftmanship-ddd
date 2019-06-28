@@ -1,4 +1,4 @@
-﻿namespace BowlingKata
+﻿namespace BowlingKata.PlayingAGame
 {
     public class GameFinishedData
     {

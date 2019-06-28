@@ -157,3 +157,14 @@ The "Config.Connectionstring" allows tests (and users) to specify which database
 
 
 
+# TODO
+
+  * The raising of the event is still in the Game.  
+  * TODOs in code.
+  * Scoreboard simulation in tests.
+     Player "Peter" rolls 10, 4, 7, 1 --> Sees state of Game
+  * Hall Of Fame 
+     should verify Playername, Score, ...
+	 
+  
+  

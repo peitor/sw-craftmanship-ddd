@@ -40,10 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game.cs" />
-    <Compile Include="GameFinishedData.cs" />
-    <Compile Include="HallOfFame\Infrastructure.cs" />
+    <Compile Include="PlayingAGame\Game.cs" />
+    <Compile Include="PlayingAGame\GameFinishedData.cs" />
+    <Compile Include="HallOfFame\HallOfFame.cs" />
+    <Compile Include="HallOfFame\HallOfFameRepository.cs" />
+    <Compile Include="HallOfFame\BowlingGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScoreBoardWhilePlaying\Scoreboard.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

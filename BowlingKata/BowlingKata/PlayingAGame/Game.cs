@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace BowlingKata
+namespace BowlingKata.PlayingAGame
 {
     public class Game
     {
-        public string PlayerName { get; set; }
+        public string PlayerName { get; set; } = "(default Playername)";
 
         private readonly int[] rolls = new int[21];
         private int currentRoll;

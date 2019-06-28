@@ -65,7 +65,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Infrastructure.cs" />
-    <Compile Include="GameTest.cs" />
+    <Compile Include="PlayingAGame\GameSpecifications.cs" />
+    <Compile Include="HallOfFame\SimulateDifferentGames.cs" />
+    <Compile Include="ScoreBoardWhilePlaying\VerifyScoreBoardWhilePlaying.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCommons.cs" />
   </ItemGroup>
@@ -82,9 +84,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PlayingAGame\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Analyzer Include="..\packages\FakeItEasy.Analyzer.CSharp.5.1.1\analyzers\dotnet\cs\FakeItEasy.Analyzer.CSharp.dll" />
   </ItemGroup>

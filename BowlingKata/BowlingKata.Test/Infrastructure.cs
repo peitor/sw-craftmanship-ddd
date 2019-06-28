@@ -1,10 +1,11 @@
 ﻿using BowlingKata.HallOfFame;
+using BowlingKata.PlayingAGame;
 
 namespace BowlingKata.Test
 {
     public class HallOfFameHook
     {
-        public HallOfFame.HallOfFame hallOfFame = new HallOfFame.HallOfFame();
+        public readonly BowlingKata.HallOfFame.HallOfFame HallOfFame = new BowlingKata.HallOfFame.HallOfFame();
         
         public void GameFinishedHappened(GameFinishedData gameFinishedData)
         {

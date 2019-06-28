@@ -1,4 +1,5 @@
 ﻿using System;
+using BowlingKata.PlayingAGame;
 using NSubstitute;
 
 namespace BowlingKata.Test
