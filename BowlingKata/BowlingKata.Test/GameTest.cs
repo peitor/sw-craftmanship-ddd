@@ -387,7 +387,7 @@ namespace BowlingKata.Test
         }
         
         [Test]
-        public void HallOf_ContainsOnlyTop3()
+        public void HallOfFame_ContainsOnlyTop3()
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
