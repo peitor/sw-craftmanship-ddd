@@ -392,7 +392,11 @@ namespace BowlingKata.Test
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
             var world = new HallOfFameHook();
-            
+            HookUpAndSimulateBadGame(world.GameFinishedHappened);
+            HookUpAndSimulateBadGame(world.GameFinishedHappened);
+            HookUpAndSimulateBadGame(world.GameFinishedHappened);
+            HookUpAndSimulateBadGame(world.GameFinishedHappened);
+
             // These top 3 should show up in the hall of fame
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);

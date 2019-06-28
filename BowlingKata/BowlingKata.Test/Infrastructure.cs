@@ -34,7 +34,7 @@ namespace BowlingKata.Test
         public BowlingGame[] GetTopGames(int take)
         {
             return Database.GetAll<BowlingGame>(tablename: "HallOfFameGames")
-                .OrderBy(c => c.Score).Take(take).ToArray();
+                .OrderByDescending(c => c.Score).Take(take).ToArray();
         }
     }
 
