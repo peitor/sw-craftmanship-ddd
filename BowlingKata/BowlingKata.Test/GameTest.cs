@@ -365,15 +365,6 @@ namespace BowlingKata.Test
     public class VisualizeHallOfFame
     {
         [Test]
-        public void NoGame_NoHallOfFame()
-        {
-            Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-            var world = new HallOfFameHook();
-            Assert.AreEqual(0, world.hallOfFame.Length);
-        }
-
-        [Test]
         public void OneGameFinished_SeeIt()
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
