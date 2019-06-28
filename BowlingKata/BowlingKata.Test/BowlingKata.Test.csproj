@@ -65,11 +65,13 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Infrastructure.cs" />
-    <Compile Include="PlayingAGame\GameSpecifications.cs" />
+    <Compile Include="PlayingAGame\GameFinishesDetection.cs" />
+    <Compile Include="PlayingAGame\TotalScoreAfterEndOfGame.cs" />
     <Compile Include="HallOfFame\SimulateDifferentGames.cs" />
-    <Compile Include="ScoreBoardWhilePlaying\VerifyScoreBoardWhilePlaying.cs" />
+    <Compile Include="ScoreBoardWhilePlaying\ScoreForFrame.cs" />
+    <Compile Include="ScoreBoardWhilePlaying\ScoreBoard_VerifyWhilePlaying.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestCommons.cs" />
+    <Compile Include="PlayingAGame\TestCommons.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BowlingKata\BowlingKata.csproj">
