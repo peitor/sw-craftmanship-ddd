@@ -4,30 +4,20 @@ namespace BowlingKata
 {
     public class Game
     {
-        public bool IsFinished { get; private set; } = false;
-        public Action<GameFinishedData> GameFinished { get; set; }
         public string PlayerName { get; set; }
 
         private readonly int[] rolls = new int[21];
         private int currentRoll;
 
+        public bool IsFinished { get; private set; } = false;
+        public Action<GameFinishedData> GameFinished { get; set; }
         private bool gameFinishedWasAlreadyCalled = false;
 
         public void Roll(int pins)
         {
             rolls[currentRoll++] = pins;
 
-            if (MinimumRollsHappened())
-            {
-                IsFinished = Frame10HasValidScore();
-
-                RaiseGameFinishedEvent(ScoreForFrame(10));
-            }
-        }
-
-        public int TotalScore()
-        {
-            return ScoreForFrame(10);
+            TryRaiseGameFinishedEvent();
         }
 
         public int ScoreForFrame(int frameNumber)
@@ -65,6 +55,11 @@ namespace BowlingKata
             return rollIndexNeededForCalculableResult >= currentRoll && currentRoll != 0 ? -1 : score;
         }
 
+        public int TotalScore()
+        {
+            return ScoreForFrame(10);
+        }
+
         private bool IsStrike(int frameIndex)
         {
             return rolls[frameIndex] == 10;
@@ -95,6 +90,22 @@ namespace BowlingKata
             return ScoreForFrame(10) > -1;
         }
 
+        private void TryRaiseGameFinishedEvent()
+        {
+            if (MinimumRollsHappened())
+            {
+                // TODO: FIXME: ASAP!  This call is important. 
+                IsFinished = Frame10HasValidScore();
+
+                int scoreForFrame = ScoreForFrame(10);
+                
+                if (IsFinished)
+                {
+                    RaiseGameFinishedEvent(scoreForFrame);
+                }
+            }
+        }
+
         private bool MinimumRollsHappened()
         {
             return currentRoll >= 12;
@@ -102,9 +113,7 @@ namespace BowlingKata
 
         private void RaiseGameFinishedEvent(int scoreForFrame)
         {
-            if (IsFinished
-                && gameFinishedWasAlreadyCalled == false
-            )
+            if (gameFinishedWasAlreadyCalled == false)
             {
                 GameFinished?.Invoke(new GameFinishedData
                 {
@@ -114,11 +123,5 @@ namespace BowlingKata
                 gameFinishedWasAlreadyCalled = true;
             }
         }
-    }
-
-    public class GameFinishedData
-    {
-        public int TotalScore { get; set; }
-        public string PlayerName { get; set; }
     }
 }
