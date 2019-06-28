@@ -42,7 +42,15 @@
   <ItemGroup>
     <Compile Include="Game.cs" />
     <Compile Include="GameFinishedData.cs" />
+    <Compile Include="HallOfFame\Infrastructure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Commons\Commons.csproj">
+      <Project>{59B0810E-A0D4-4676-8EF2-156B26B38334}</Project>
+      <Name>Commons</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

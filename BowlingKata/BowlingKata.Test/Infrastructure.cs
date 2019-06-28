@@ -1,66 +1,14 @@
-﻿using System.Linq;
+﻿using BowlingKata.HallOfFame;
 
 namespace BowlingKata.Test
 {
     public class HallOfFameHook
     {
-        public HallOfFame hallOfFame = new HallOfFame();
+        public HallOfFame.HallOfFame hallOfFame = new HallOfFame.HallOfFame();
         
         public void GameFinishedHappened(GameFinishedData gameFinishedData)
         {
             new HallOfFameRepository().StoreGame(gameFinishedData.TotalScore);
-        }
-    }
-
-    public class HallOfFame
-    {
-        public int Length => new HallOfFameRepository().GetTopGames(3).Count();
-
-        public BowlingGame this[int position] => new HallOfFameRepository().GetAllGames()[position];
-    }
-
-    public class HallOfFameRepository
-    {
-        public void StoreGame(int score)
-        {
-            Database.Add("HallOfFameGames", new BowlingGame(score));
-        }
-
-        public BowlingGame[] GetAllGames()
-        {
-            return GetAllGamesOrdered()
-                .ToArray();
-        }
-
-        public BowlingGame[] GetTopGames(int take)
-        {
-            return GetAllGamesOrdered()
-                .Take(take).ToArray();
-        }
-
-        private static IOrderedEnumerable<BowlingGame> GetAllGamesOrdered()
-        {
-            return Database.GetAll<BowlingGame>(tablename: "HallOfFameGames")
-                .OrderByDescending(c => c.Score);
-        }
-    }
-
-
-    public class BowlingGame : DatabaseMetadata
-    {
-        private readonly int _score;
-
-        public BowlingGame(int score)
-        {
-            _score = score;
-        }
-
-        public int Score
-        {
-            get
-            {
-                return _score;
-            }
         }
     }
 }

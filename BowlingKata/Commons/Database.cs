@@ -1,13 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace BowlingKata.Test
+namespace Commons
 {
-    public static class Config
-    {
-        public static string ConnectionString { get; set; } = "(default)";
-    }
-
     /// <summary>
     /// This is not a real database.
     /// But it has all the pain that real databases have :)
