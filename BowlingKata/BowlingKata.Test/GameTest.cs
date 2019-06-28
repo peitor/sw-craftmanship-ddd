@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Linq;
 using Commons;
 using NSubstitute;
-using NSubstitute.Core.Arguments;
-using NSubstitute.ReceivedExtensions;
 using NUnit.Framework;
 
 namespace BowlingKata.Test
@@ -387,6 +384,30 @@ namespace BowlingKata.Test
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
 
             Assert.AreEqual(3, world.hallOfFame.Length);
+        }
+        
+        [Test]
+        public void HallOf_ContainsOnlyTop3()
+        {
+            Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+            var world = new HallOfFameHook();
+            
+            // These top 3 should show up in the hall of fame
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
+
+            Assert.AreEqual(300, world.hallOfFame[0].Score);
+
+            Assert.AreEqual(3, world.hallOfFame.Length);
+        }
+
+        private void HookUpAndSimulateBadGame(Action<GameFinishedData> gameFinished)
+        {
+            var game = new Game();
+            game.GameFinished += gameFinished;
+            20.Times(() => game.Roll(1));
         }
 
 

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Linq;
-using Castle.Core.Resource;
+﻿using System.Linq;
 
 namespace BowlingKata.Test
 {
@@ -16,7 +14,9 @@ namespace BowlingKata.Test
 
     public class HallOfFame
     {
-        public int Length => new HallOfFameRepository().GetAllGames().Count();
+        public int Length => new HallOfFameRepository().GetTopGames(3).Count();
+
+        public BowlingGame this[int position] => new HallOfFameRepository().GetAllGames()[position];
     }
 
     public class HallOfFameRepository
@@ -30,6 +30,12 @@ namespace BowlingKata.Test
         {
             return Database.GetAll<BowlingGame>(tablename: "HallOfFameGames");
         }
+
+        public BowlingGame[] GetTopGames(int take)
+        {
+            return Database.GetAll<BowlingGame>(tablename: "HallOfFameGames")
+                .OrderBy(c => c.Score).Take(take).ToArray();
+        }
     }
 
 
@@ -40,6 +46,14 @@ namespace BowlingKata.Test
         public BowlingGame(int score)
         {
             _score = score;
+        }
+
+        public int Score
+        {
+            get
+            {
+                return _score;
+            }
         }
     }
 }
