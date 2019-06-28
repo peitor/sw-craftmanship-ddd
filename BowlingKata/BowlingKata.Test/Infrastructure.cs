@@ -28,13 +28,20 @@ namespace BowlingKata.Test
 
         public BowlingGame[] GetAllGames()
         {
-            return Database.GetAll<BowlingGame>(tablename: "HallOfFameGames");
+            return GetAllGamesOrdered()
+                .ToArray();
         }
 
         public BowlingGame[] GetTopGames(int take)
         {
+            return GetAllGamesOrdered()
+                .Take(take).ToArray();
+        }
+
+        private static IOrderedEnumerable<BowlingGame> GetAllGamesOrdered()
+        {
             return Database.GetAll<BowlingGame>(tablename: "HallOfFameGames")
-                .OrderByDescending(c => c.Score).Take(take).ToArray();
+                .OrderByDescending(c => c.Score);
         }
     }
 
