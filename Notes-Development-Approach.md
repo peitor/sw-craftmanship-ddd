@@ -128,3 +128,11 @@ What is ugly at the moment?
   * The raising of the event is still in the Game.  
   * The static Database behaves like a database. Parallel test runs fail. Sounds familiar? :)
 
+  
+# Self Reflection 2019-06-28 (2 months later since last work)
+
+It took me a while to understand how the code works :/
+
+
+
+
