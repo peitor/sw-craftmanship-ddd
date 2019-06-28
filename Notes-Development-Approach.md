@@ -160,6 +160,9 @@ Now we have 3 folders for the 3 bounded contexts:
   2. ScoreBoardWhilePlaying 
   3. HallOfFame
 
+## Started on running ScoreBoard logic
+Major refactoring needed :(
+
   
 
 # TODO
