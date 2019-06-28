@@ -154,8 +154,13 @@ Parallel change to introduce a "Database" and a "Config.ConnectionString".
 
 The "Config.Connectionstring" allows tests (and users) to specify which database to use and have their own database. 
 
+## Separated all classes into own files and folders
+Now we have 3 folders for the 3 bounded contexts: 
+  1. PlayingAGame
+  2. ScoreBoardWhilePlaying 
+  3. HallOfFame
 
-
+  
 
 # TODO
 
