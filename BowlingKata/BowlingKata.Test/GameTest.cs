@@ -403,8 +403,8 @@ namespace BowlingKata.Test
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
 
             Assert.AreEqual(300, world.hallOfFame[0].Score);
-
-            Assert.AreEqual(3, world.hallOfFame.Length);
+            Assert.AreEqual(300, world.hallOfFame[1].Score);
+            Assert.AreEqual(300, world.hallOfFame[2].Score);
         }
 
         private void HookUpAndSimulateBadGame(Action<GameFinishedData> gameFinished)
