@@ -36,7 +36,7 @@ namespace BowlingKata.PlayingAGame
 
         public int CurrentScore()
         {
-            var score = ScoreForFrame(10, out var rollIndexNeededForCalculableResult);
+            var score = ScoreForFrame(10, out _);
 
             return score;
         }
