@@ -77,6 +77,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void TODO_ToVerify()
         {
+            // TODO
             var g = new Game();
 
             RollAndAssert(g, 10, 10);
