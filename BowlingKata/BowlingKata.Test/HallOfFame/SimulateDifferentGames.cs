@@ -1,4 +1,5 @@
 ﻿using System;
+using BowlingKata.HallOfFame;
 using BowlingKata.PlayingAGame;
 using Commons;
 using NUnit.Framework;
@@ -12,7 +13,7 @@ namespace BowlingKata.Test.HallOfFame
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
-            var world = new HallOfFameHook();
+            var world = new HallOfFameBoundedContext();
             
             var hallOfFameLength = world.HallOfFame.Length;
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
@@ -24,7 +25,7 @@ namespace BowlingKata.Test.HallOfFame
         public void GivenFullHallOfFame_NewLowScoreGameFinishes_NoImpact()
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            var world = new HallOfFameHook();
+            var world = new HallOfFameBoundedContext();
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
@@ -37,7 +38,7 @@ namespace BowlingKata.Test.HallOfFame
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
-            var world = new HallOfFameHook();
+            var world = new HallOfFameBoundedContext();
             HookUpAndSimulateBadGame(world.GameFinishedHappened);
             HookUpAndSimulateBadGame(world.GameFinishedHappened);
             HookUpAndSimulateBadGame(world.GameFinishedHappened);
