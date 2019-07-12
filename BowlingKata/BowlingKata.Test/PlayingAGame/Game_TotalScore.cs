@@ -13,9 +13,21 @@ namespace BowlingKata.Test.PlayingAGame
             var game = new Game();
             Assert.AreEqual(0, game.TotalScore());
         }
+        
+        [Test]
+        public void RunningGame_ReturnsMinus1()
+        {
+            var game = new Game();
+            game.Roll(3);
+            game.Roll(5);
+            
+            game.Roll(5);
+
+            Assert.AreEqual(-1, game.TotalScore());
+        }
 
         [Test]
-        public void StrikesOnlyShouldReturn300()
+        public void StrikesOnly_ShouldReturn300()
         {
             var game = new Game();
             12.Times(() => game.Roll(10));
