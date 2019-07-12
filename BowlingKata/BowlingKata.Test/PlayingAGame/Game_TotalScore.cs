@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace BowlingKata.Test.PlayingAGame
 {
-    public class TotalScoreAfterEndOfGame
+    public class Game_TotalScore
     {
         [Test]
         public void InitialScoreShouldBeZero()

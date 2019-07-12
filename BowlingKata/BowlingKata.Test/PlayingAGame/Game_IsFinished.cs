@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace BowlingKata.Test.PlayingAGame
 {
-    public class GameFinishesDetection
+    public class Game_IsFinished
     {
         [Test]
         public void TwoRolls_NotFinished()
