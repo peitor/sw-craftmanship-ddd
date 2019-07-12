@@ -67,10 +67,9 @@
     <Compile Include="PlayingAGame\GameFinishesDetection.cs" />
     <Compile Include="PlayingAGame\TotalScoreAfterEndOfGame.cs" />
     <Compile Include="HallOfFame\SimulateDifferentGames.cs" />
-    <Compile Include="ScoreBoardWhilePlaying\Game_ScoreForFrame.cs" />
+    <Compile Include="PlayingAGame\Game_ScoreForFrame.cs" />
     <Compile Include="ScoreBoardWhilePlaying\ScoreBoard_VerifyWhilePlaying.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PlayingAGame\TestCommons.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BowlingKata\BowlingKata.csproj">

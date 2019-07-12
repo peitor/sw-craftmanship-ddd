@@ -1,10 +1,9 @@
 ﻿using BowlingKata.ScoreBoardWhilePlaying;
-using BowlingKata.Test.PlayingAGame;
 using NUnit.Framework;
 
 namespace BowlingKata.Test.ScoreBoardWhilePlaying
 {
-    public class ScoreBoard_VerifyWhilePlaying : TestCommons
+    public class ScoreBoard_VerifyWhilePlaying
     {
         //[Test]
         //public void JustStarted_ScoreIsZero()

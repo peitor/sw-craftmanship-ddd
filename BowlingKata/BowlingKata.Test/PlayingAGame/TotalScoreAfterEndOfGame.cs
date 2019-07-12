@@ -1,22 +1,23 @@
 ﻿using System;
+using BowlingKata.PlayingAGame;
 using Commons;
 using NUnit.Framework;
 
 namespace BowlingKata.Test.PlayingAGame
 {
-    public class TotalScoreAfterEndOfGame : TestCommons
+    public class TotalScoreAfterEndOfGame
     {
         [Test]
         public void InitialScoreShouldBeZero()
         {
-            var game = GivenNewGame();
+            var game = new Game();
             Assert.AreEqual(0, game.TotalScore());
         }
 
         [Test]
         public void StrikesOnlyShouldReturn300()
         {
-            var game = GivenNewGame();
+            var game = new Game();
             12.Times(() => game.Roll(10));
             Assert.AreEqual(300, game.TotalScore());
         }
@@ -24,7 +25,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void PairsOfNineAndMissShouldReturn90()
         {
-            var game = GivenNewGame();
+            var game = new Game();
             10.Times(() =>
             {
                 game.Roll(9);
@@ -37,7 +38,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void FivesOnlyShouldReturn150()
         {
-            var game = GivenNewGame();
+            var game = new Game();
 
             21.Times(() => game.Roll(5));
 
@@ -47,7 +48,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void RollingMoreThen21TimesShouldThrowException()
         {
-            var game = GivenNewGame();
+            var game = new Game();
 
             Assert.Throws<IndexOutOfRangeException>(() => 22.Times(() => game.Roll(5)));
         }
