@@ -1,5 +1,4 @@
-﻿using BowlingKata.PlayingAGame;
-using BowlingKata.ScoreBoardWhilePlaying;
+﻿using BowlingKata.ScoreBoardWhilePlaying;
 using NUnit.Framework;
 
 namespace BowlingKata.Test.ScoreBoardWhilePlaying
