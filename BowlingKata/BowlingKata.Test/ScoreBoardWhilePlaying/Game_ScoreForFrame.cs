@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace BowlingKata.Test.ScoreBoardWhilePlaying
 {
-    public class ScoreForFrame : TestCommons
+    public class Game_ScoreForFrame : TestCommons
     {
         [Test]
         public void ScoreForFrame_OneRoll()

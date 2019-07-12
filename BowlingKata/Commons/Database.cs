@@ -29,13 +29,4 @@ namespace Commons
             return clientToDatabaseObjects[Config.ConnectionString].Cast<T>().ToArray();
         }
     }
-
-
-    public abstract class DatabaseMetadata
-    {
-    }
-
-    public class DatabaseMetadata<DataType> : DatabaseMetadata // where DataType : struct
-    {
-    }
 }
