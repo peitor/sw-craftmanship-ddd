@@ -169,7 +169,6 @@ The current context map looks like this:
 ![Current Context Map - 2 Bounded Context](images/2019-07-12-bounded-context-not-separated.png)
 
 
-
   * Scoreboard should not use the Game, but have its own. Separate Bounded Contexts!  
     Start with ScoreBoard_VerifyWhilePlaying.  
   * The raising of the event is still in the Game.  
@@ -180,12 +179,18 @@ The current context map looks like this:
     should verify Playername, Score, ...
   * The world that hooks up HallOfFame and Game is weird somehow.
   * Bug: ScoreForFrame is the sum over all frames until the one. Not just score for that frame.
-  * Invalid rolls should throw: Roll(11)
+  * Invalid rolls should throw: Roll(11) or Roll(5), Roll(5). 
 
+  
 # Self Reflection 2019-07-12 
 
   * The ScoreForFrame is ugly as hell.  
   * The codebase is in bad shape. 
   
   
-  
+## Decision: Remove TotalScore and use only CurrentScore.
+
+## Thought: Game class has too many responsibilities. Fix that next.
+
+## Thought: Use ApprovalTests to nail the current state and refactor code.
+
