@@ -32,3 +32,6 @@ The final context map looks like this:
 
 # Progress
 My thinking and progress can be monitored via the commit messages and here [Notes-Development-Approach.md](Notes-Development-Approach.md).
+
+## Learn the rules
+Here is a simulator to learn the rules http://www.bowlinggenius.com/ .
