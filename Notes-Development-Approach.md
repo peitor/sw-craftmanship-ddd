@@ -179,7 +179,13 @@ The current context map looks like this:
   * Hall Of Fame 
     should verify Playername, Score, ...
   * The world that hooks up HallOfFame and Game is weird somehow.
+  * Bug: ScoreForFrame is the sum over all frames until the one. Not just score for that frame.
+  * Invalid rolls should throw: Roll(11)
 
-	
+# Self Reflection 2019-07-12 
+
+  * The ScoreForFrame is ugly as hell.  
+  * The codebase is in bad shape. 
+  
   
   

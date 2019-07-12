@@ -3,18 +3,13 @@ using BowlingKata.PlayingAGame;
 
 namespace BowlingKata.ScoreBoardWhilePlaying
 {
+    /// <summary>
+    /// Bowlers see score while bowling.
+    /// This is not the overall bowling hall running scoreboard.
+    /// </summary>
     public class Scoreboard
     {
-        Dictionary<string, Game> playersWithGames = new Dictionary<string, Game>();
-
-        public Game game
-        {
-            get
-            {
-                return this["default"];
-
-            }
-        }
+        readonly Dictionary<string, Game> playersWithGames = new Dictionary<string, Game>();
 
         public Game this[string name]
         {
@@ -31,11 +26,11 @@ namespace BowlingKata.ScoreBoardWhilePlaying
     }
 
     // TODO: Scoreboard should not use the Game, but have its own. Separate Bounded Contexts!
-    //public class Game
-    //{
+    public class RunningGame
+    {
     //    public string PlayerName { get; set; } = "(default Playername)";
 
-    //    public int CurrentScore { get; set; }
+        public int CurrentScore { get; set; }
 
-    //}
+    }
 }

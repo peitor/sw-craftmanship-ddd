@@ -58,6 +58,43 @@ namespace BowlingKata.Test.PlayingAGame
         }
 
         [Test]
+        public void SimulateGame_WithStrikes_And_LotsOfEmpty()
+        {
+            // Simulation validated by http://www.sportcalculators.com/bowling-score-calculator
+
+            var game = new Game();
+            game.Roll(10);
+
+            game.Roll(0);
+            game.Roll(0);
+            
+            game.Roll(2);
+            game.Roll(3);
+            
+            game.Roll(10);
+            
+            game.Roll(5);
+            game.Roll(5);
+            
+            game.Roll(2);
+            game.Roll(0);
+            
+            game.Roll(0);
+            game.Roll(0);
+            
+            game.Roll(0);
+            game.Roll(0);
+            
+            game.Roll(0);
+            game.Roll(0);
+
+            game.Roll(0);
+            game.Roll(0);
+
+            Assert.AreEqual(49, game.TotalScore());
+        }
+
+        [Test]
         public void RollingMoreThen21TimesShouldThrowException()
         {
             var game = new Game();

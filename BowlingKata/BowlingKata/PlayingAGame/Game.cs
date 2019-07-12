@@ -8,27 +8,54 @@ namespace BowlingKata.PlayingAGame
 
         private readonly int[] rolls = new int[21];
         private int currentRoll;
+        private int currentFrameIndex;
 
         public bool IsFinished { get; private set; } = false;
         public Action<GameFinishedData> GameFinished { get; set; }
+
         private bool gameFinishedWasAlreadyCalled = false;
 
         public void Roll(int pins)
         {
             rolls[currentRoll++] = pins;
 
+            if (IsStrike(currentFrameIndex))
+            {
+                currentFrameIndex++;
+            } 
+
             TryRaiseGameFinishedEvent();
         }
 
         public int ScoreForFrame(int frameNumber)
         {
+            var score = ScoreForFrame(frameNumber, out var rollIndexNeededForCalculableResult);
+
+            return rollIndexNeededForCalculableResult >= currentRoll && currentRoll != 0 ? -1 : score;
+        }
+
+        public int TotalScore()
+        {
+            return ScoreForFrame(10);
+        }
+        
+        public int CurrentScore()
+        {
+            var score = ScoreForFrame(10, out var rollIndexNeededForCalculableResult);
+
+            return score;
+        }
+
+        private int ScoreForFrame(int frameNumber, out int rollIndexNeededForCalculableResult)
+        {
             if (frameNumber > 10 || frameNumber < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
+
             var score = 0;
             var currentRollIndex = 0;
-            var rollIndexNeededForCalculableResult = 0;
+            rollIndexNeededForCalculableResult = 0;
 
             for (var currentFrame = 1; currentFrame <= frameNumber; currentFrame++)
             {
@@ -52,12 +79,7 @@ namespace BowlingKata.PlayingAGame
                 }
             }
 
-            return rollIndexNeededForCalculableResult >= currentRoll && currentRoll != 0 ? -1 : score;
-        }
-
-        public int TotalScore()
-        {
-            return ScoreForFrame(10);
+            return score;
         }
 
         private bool IsStrike(int frameIndex)
