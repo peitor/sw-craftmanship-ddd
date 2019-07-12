@@ -163,9 +163,12 @@ Now we have 3 folders for the 3 bounded contexts:
 ## Started on running ScoreBoard logic
 Major refactoring needed :(
 
-  
-
 # TODO
+
+The current context map looks like this:
+![Current Context Map - 2 Bounded Context](images/2019-07-12-bounded-context-not-separated.png)
+
+
 
   * Scoreboard should not use the Game, but have its own. Separate Bounded Contexts!
     Start with ScoreBoard_VerifyWhilePlaying.  
