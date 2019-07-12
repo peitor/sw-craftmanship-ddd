@@ -59,7 +59,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
 
 
         [Test]
-        public void TotalGAMEEEE()
+        public void SimulateFullGame_2Strikes_LotsOr0()
         {
             Scoreboard scoreboard = new Scoreboard();
 

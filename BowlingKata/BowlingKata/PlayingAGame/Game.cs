@@ -34,11 +34,6 @@ namespace BowlingKata.PlayingAGame
             return rollIndexNeededForCalculableResult >= currentRoll && currentRoll != 0 ? -1 : score;
         }
 
-        public int TotalScore()
-        {
-            return ScoreForFrame(10);
-        }
-        
         public int CurrentScore()
         {
             var score = ScoreForFrame(10, out var rollIndexNeededForCalculableResult);

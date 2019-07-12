@@ -5,13 +5,13 @@ using NUnit.Framework;
 
 namespace BowlingKata.Test.PlayingAGame
 {
-    public class Game_TotalScore
+    public class Game_CurrentScore
     {
         [Test]
         public void InitialScoreShouldBeZero()
         {
             var game = new Game();
-            Assert.AreEqual(0, game.TotalScore());
+            Assert.AreEqual(0, game.CurrentScore());
         }
         
         [Test]
@@ -23,7 +23,7 @@ namespace BowlingKata.Test.PlayingAGame
             
             game.Roll(5);
 
-            Assert.AreEqual(-1, game.TotalScore());
+            Assert.AreEqual(13, game.CurrentScore());
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace BowlingKata.Test.PlayingAGame
         {
             var game = new Game();
             12.Times(() => game.Roll(10));
-            Assert.AreEqual(300, game.TotalScore());
+            Assert.AreEqual(300, game.CurrentScore());
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace BowlingKata.Test.PlayingAGame
                 game.Roll(0);
             });
 
-            Assert.AreEqual(90, game.TotalScore());
+            Assert.AreEqual(90, game.CurrentScore());
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace BowlingKata.Test.PlayingAGame
 
             21.Times(() => game.Roll(5));
 
-            Assert.AreEqual(150, game.TotalScore());
+            Assert.AreEqual(150, game.CurrentScore());
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace BowlingKata.Test.PlayingAGame
             game.Roll(0);
             game.Roll(0);
 
-            Assert.AreEqual(49, game.TotalScore());
+            Assert.AreEqual(49, game.CurrentScore());
         }
 
         [Test]
