@@ -170,15 +170,15 @@ The current context map looks like this:
 
 
 
-	* Scoreboard should not use the Game, but have its own. Separate Bounded Contexts!
-		Start with ScoreBoard_VerifyWhilePlaying.  
-	* The raising of the event is still in the Game.  
-	* TODOs in code.
-	* Scoreboard simulation in tests.
-		Player "Peter" rolls 10, 4, 7, 1 --> Sees state of Game
-	* Hall Of Fame 
-		should verify Playername, Score, ...
-	* The world that hooks up HallOfFame and Game is weird somehow.
+  * Scoreboard should not use the Game, but have its own. Separate Bounded Contexts!
+    Start with ScoreBoard_VerifyWhilePlaying.  
+  * The raising of the event is still in the Game.  
+  * TODOs in code.
+  * Scoreboard simulation in tests.
+    Player "Peter" rolls 10, 4, 7, 1 --> Sees state of Game
+  * Hall Of Fame 
+    should verify Playername, Score, ...
+  * The world that hooks up HallOfFame and Game is weird somehow.
 
 	
   
