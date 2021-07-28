@@ -20,10 +20,7 @@
 
 
 What is ugly at the moment?
-
-* The raising of the event is still in the Game.
 * The static Database behaves like a database. Parallel test runs fail. Sounds familiar? :)
-
 
 
 
