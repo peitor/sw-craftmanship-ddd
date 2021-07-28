@@ -10,18 +10,7 @@ namespace BowlingKata.Test.HallOfFame
     public class SimulateDifferentGames
     {
         [Test]
-        public void OnePerfectGameFinished_SeeIt()
-        {
-            Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            var world = new HallOfFameBoundedContext();
-            
-            HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
-            
-            world.HallOfFame[0].Score.Should().Be(300);
-        }
-        
-        [Test]
-        public void OnePerfectGameFinished_SeeBowlersName()
+        public void OnePerfectGameFinished_SeeScoreAndBowlersName()
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
             var world = new HallOfFameBoundedContext();
@@ -30,7 +19,7 @@ namespace BowlingKata.Test.HallOfFame
             
             world.HallOfFame[0].PlayerName.Should().Be("Peter Any-Bowler-Name");
         }
-
+        
 
         [Test]
         public void ThreePerfectGamesFinished_SeeIt()
