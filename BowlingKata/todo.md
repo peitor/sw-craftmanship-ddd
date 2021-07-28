@@ -1,4 +1,5 @@
-# TODO
+# TO DOs
+* Fix TODOs
 * Complicated bool:     return rollIndexNeededForCalculableResult >= currentRoll && currentRoll != 0 ? -1 : score;
 * The raising of the event is in the Game.
 * The raise event is probably buggy and broken.
@@ -34,12 +35,6 @@ Now we have 3 folders for the 3 bounded contexts:
   3. HallOfFame
 
 
-## Started on running ScoreBoard logic
-Major refactoring needed :(
-
-
-# TODO
-
 The current context map looks like this:
 ![Current Context Map - 2 Bounded Context](images/2019-07-12-bounded-context-not-separated.png)
 
@@ -47,7 +42,6 @@ The current context map looks like this:
   * Scoreboard should not use the Game, but have its own. Separate Bounded Contexts!  
     Start with ScoreBoard_VerifyWhilePlaying.  
   * The raising of the event is still in the Game.  
-  * TODOs in code.
   * Scoreboard simulation in tests.  
     Player "Peter" rolls 10, 4, 7, 1 --> Sees state of Game
   * Hall Of Fame 
