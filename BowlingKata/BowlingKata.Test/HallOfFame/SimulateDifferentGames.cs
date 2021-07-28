@@ -67,14 +67,15 @@ namespace BowlingKata.Test.HallOfFame
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened, "1st");
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened, "2nd");
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened, "3rd");
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened, "4th");
 
             world.HallOfFame[0].Score.Should().Be(300);
             world.HallOfFame[1].Score.Should().Be(300);
             world.HallOfFame[2].Score.Should().Be(300);
-
             world.HallOfFame[0].PlayerName.Should().Be("1st");
             world.HallOfFame[1].PlayerName.Should().Be("2nd");
             world.HallOfFame[2].PlayerName.Should().Be("3rd");
+            world.HallOfFame.Length.Should().Be(3);
         }
 
         private void HookUpAndSimulateBadGame(Action<GameFinishedData> gameFinished)
