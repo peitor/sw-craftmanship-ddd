@@ -21,6 +21,21 @@ namespace BowlingKata.Test.HallOfFame
         }
 
         [Test]
+        public void ThreePerfectGamesFinished_SeeIt()
+        {
+            Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            var world = new HallOfFameBoundedContext();
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
+
+            world.HallOfFame[0].Score.Should().Be(300);
+            world.HallOfFame[1].Score.Should().Be(300);
+            world.HallOfFame[2].Score.Should().Be(300);
+            world.HallOfFame.Length.Should().Be(3);
+        }
+        
+        [Test]
         public void GivenFullHallOfFame_NewLowScoreGameFinishes_NoImpact()
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
@@ -29,6 +44,8 @@ namespace BowlingKata.Test.HallOfFame
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
 
+            
+            
             Assert.AreEqual(3, world.HallOfFame.Length);
         }
         
