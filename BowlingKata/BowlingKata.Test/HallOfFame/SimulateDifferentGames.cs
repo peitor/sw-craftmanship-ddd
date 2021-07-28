@@ -18,7 +18,7 @@ namespace BowlingKata.Test.HallOfFame
             var hallOfFameLength = world.HallOfFame.Length;
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
 
-            Assert.True((bool) (world.HallOfFame.Length > hallOfFameLength));
+            Assert.True(world.HallOfFame.Length > hallOfFameLength);
         }
 
         [Test]
