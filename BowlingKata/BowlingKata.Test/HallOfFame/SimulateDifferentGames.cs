@@ -22,7 +22,7 @@ namespace BowlingKata.Test.HallOfFame
         
 
         [Test]
-        public void ThreePerfectGamesFinished_SeeIt()
+        public void ThreePerfectGamesFinished_SeeThem()
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
             var world = new HallOfFameBoundedContext();
