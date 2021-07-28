@@ -10,9 +10,24 @@
 * The world hooks up events... Is that responsibility of the world?
 
 
-## Starting now with Hall Of Fame.
+# TODO LIST
+* 3 top games finished, 1 new top game finishes -> assert on result
+* Simulate games and verify if we really see the final topscore --> Assumption event gets raised too early.
 
-  
+* DISCUSSION:
+*    What does "game finishes" mean?
+*    write 1 integration test, is that enough?
+
+
+What is ugly at the moment?
+
+* The raising of the event is still in the Game.
+* The static Database behaves like a database. Parallel test runs fail. Sounds familiar? :)
+
+
+
+
+## Starting now with Hall Of Fame. 
 -> Shared Kernel Approach.
 
    1. Detect via event when game has finished. Store that in DB.  
@@ -20,41 +35,10 @@
 
 ## Decision
 First all in memory. #KISS
-
 ## Decision
 Next step: refactor to a "database" --> global state between bounded context (still being shared kernel).
 
   
-
-
-
-
-
-# TODO LIST 
-  * 3 top games finished, 1 new top game finishes -> assert on result
-  * Simulate games and verify if we really see the final topscore --> Assumption event gets raised too early.
-  
-  * DISCUSSION: 
-  *    What does "game finishes" mean?
-  *    write 1 integration test, is that enough?
-  
-  
-What is ugly at the moment? 
-
-  * The raising of the event is still in the Game.  
-  * The static Database behaves like a database. Parallel test runs fail. Sounds familiar? :)
-
-  
----  
-
-  
-
-# Self Reflection 2019-06-28 (2 months later since last work)
-
-It took me a while to understand how the code works :/
-I started to read by refactoring :)
-
-
 
 ## Issue found: Code Smell
 Found 1 issue in Game and annotated with TODO. 
@@ -82,7 +66,6 @@ Now we have 3 folders for the 3 bounded contexts:
 Major refactoring needed :(
 
 
-
 # TODO
 
 The current context map looks like this:
@@ -100,17 +83,9 @@ The current context map looks like this:
   * The world that hooks up HallOfFame and Game is weird somehow.
   * Bug: ScoreForFrame is the sum over all frames until the one. Not just score for that frame.
   * Invalid rolls should throw: Roll(11) or Roll(5), Roll(5). 
-
-  
-# Self Reflection 2019-07-12 
-
   * The ScoreForFrame is ugly as hell.  
   * The codebase is in bad shape. 
-  
-  
-## Decision: Remove TotalScore and use only CurrentScore.
+  * Game class has too many responsibilities. Fix that next.
 
-## Thought: Game class has too many responsibilities. Fix that next.
-
-## Thought: Use ApprovalTests to nail the current state and refactor code.
-
+## Experiments
+* Use ApprovalTests to nail the current state and refactor code.
