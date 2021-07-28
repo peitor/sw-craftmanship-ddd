@@ -53,7 +53,7 @@ namespace BowlingKata.Test.HallOfFame
         }
 
         [Test]
-        public void HallOfFame_ContainsOnlyTop3()
+        public void ThreePerfectGamesFinishedOneBad_ContainsOnlyTop3()
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
@@ -80,7 +80,7 @@ namespace BowlingKata.Test.HallOfFame
 
         private void HookUpAndSimulateBadGame(Action<GameFinishedData> gameFinished)
         {
-            var game = Game.NewGameWithAnonymousPlayer();
+            var game = Game.NewGameWithPlayer("bad player :)");
             game.GameFinished += gameFinished;
             20.Times(() => game.Roll(1));
         }
