@@ -14,12 +14,12 @@ namespace BowlingKata.Test.HallOfFame
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
             var world = new HallOfFameBoundedContext();
-            
-            HookUpAndSimulatePerfectGame(world.GameFinishedHappened,"Peter Any-Bowler-Name");
-            
+
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened, "Peter Any-Bowler-Name");
+
             world.HallOfFame[0].PlayerName.Should().Be("Peter Any-Bowler-Name");
         }
-        
+
 
         [Test]
         public void ThreePerfectGamesFinished_SeeThem()
@@ -35,7 +35,8 @@ namespace BowlingKata.Test.HallOfFame
             world.HallOfFame[2].Score.Should().Be(300);
             world.HallOfFame.Length.Should().Be(3);
         }
-        
+
+
         [Test]
         public void FullHallOfFame_NewLowScoreGameFinishes_NoImpact()
         {
@@ -47,10 +48,10 @@ namespace BowlingKata.Test.HallOfFame
 
             Assert.AreEqual(3, world.HallOfFame.Length);
             HookUpAndSimulateBadGame(world.GameFinishedHappened);
-           
+
             Assert.AreEqual(3, world.HallOfFame.Length);
         }
-        
+
         [Test]
         public void HallOfFame_ContainsOnlyTop3()
         {
