@@ -85,9 +85,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Analyzer Include="..\packages\FakeItEasy.Analyzer.CSharp.5.1.1\analyzers\dotnet\cs\FakeItEasy.Analyzer.CSharp.dll" />
-  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
