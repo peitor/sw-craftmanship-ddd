@@ -2,6 +2,7 @@
 using BowlingKata.HallOfFame;
 using BowlingKata.PlayingAGame;
 using Commons;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace BowlingKata.Test.HallOfFame
@@ -12,14 +13,11 @@ namespace BowlingKata.Test.HallOfFame
         public void OnePerfectGameFinished_SeeIt()
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
             var world = new HallOfFameBoundedContext();
             
-            var hallOfFameLength = world.HallOfFame.Length;
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
-
-            Assert.True(world.HallOfFame.Length > hallOfFameLength);
-            Assert.That(world.HallOfFame[0].Score == 300);
+            
+            world.HallOfFame[0].Score.Should().Be(300);
         }
 
         [Test]
