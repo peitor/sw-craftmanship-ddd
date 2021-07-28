@@ -44,8 +44,6 @@ The current context map looks like this:
   * The raising of the event is still in the Game.  
   * Scoreboard simulation in tests.  
     Player "Peter" rolls 10, 4, 7, 1 --> Sees state of Game
-  * Hall Of Fame 
-    should verify Playername, Score, ...
   * The world that hooks up HallOfFame and Game is weird somehow.
   * Bug: ScoreForFrame is the sum over all frames until the one. Not just score for that frame.
   * Invalid rolls should throw: Roll(11) or Roll(5), Roll(5). 
