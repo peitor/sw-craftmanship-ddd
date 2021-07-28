@@ -72,6 +72,9 @@ namespace BowlingKata.Test.HallOfFame
             world.HallOfFame[1].Score.Should().Be(300);
             world.HallOfFame[2].Score.Should().Be(300);
 
+            world.HallOfFame[0].PlayerName.Should().Be("1st");
+            world.HallOfFame[1].PlayerName.Should().Be("2nd");
+            world.HallOfFame[2].PlayerName.Should().Be("3rd");
         }
 
         private void HookUpAndSimulateBadGame(Action<GameFinishedData> gameFinished)
