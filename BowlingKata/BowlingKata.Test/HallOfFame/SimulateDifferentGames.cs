@@ -19,6 +19,18 @@ namespace BowlingKata.Test.HallOfFame
             
             world.HallOfFame[0].Score.Should().Be(300);
         }
+        
+        [Test]
+        public void OnePerfectGameFinished_SeeBowlersName()
+        {
+            Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            var world = new HallOfFameBoundedContext();
+            
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
+            
+            world.HallOfFame[0].PlayerName.Should().Be("Peter Any-Bowler-Name");
+        }
+
 
         [Test]
         public void ThreePerfectGamesFinished_SeeIt()
@@ -36,7 +48,7 @@ namespace BowlingKata.Test.HallOfFame
         }
         
         [Test]
-        public void GivenFullHallOfFame_NewLowScoreGameFinishes_NoImpact()
+        public void FullHallOfFame_NewLowScoreGameFinishes_NoImpact()
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
             var world = new HallOfFameBoundedContext();
@@ -44,8 +56,9 @@ namespace BowlingKata.Test.HallOfFame
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
 
-            
-            
+            Assert.AreEqual(3, world.HallOfFame.Length);
+            HookUpAndSimulateBadGame(world.GameFinishedHappened);
+           
             Assert.AreEqual(3, world.HallOfFame.Length);
         }
         
