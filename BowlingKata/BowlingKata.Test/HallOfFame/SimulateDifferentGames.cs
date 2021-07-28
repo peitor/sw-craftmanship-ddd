@@ -46,10 +46,10 @@ namespace BowlingKata.Test.HallOfFame
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
 
-            Assert.AreEqual(3, world.HallOfFame.Length);
+            world.HallOfFame.Length.Should().Be(3);
             HookUpAndSimulateBadGame(world.GameFinishedHappened);
 
-            Assert.AreEqual(3, world.HallOfFame.Length);
+            world.HallOfFame.Length.Should().Be(3);
         }
 
         [Test]
@@ -64,13 +64,14 @@ namespace BowlingKata.Test.HallOfFame
             HookUpAndSimulateBadGame(world.GameFinishedHappened);
 
             // These top 3 should show up in the hall of fame
-            HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
-            HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
-            HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened, "1st");
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened, "2nd");
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened, "3rd");
 
-            Assert.AreEqual(300, world.HallOfFame[0].Score);
-            Assert.AreEqual(300, world.HallOfFame[1].Score);
-            Assert.AreEqual(300, world.HallOfFame[2].Score);
+            world.HallOfFame[0].Score.Should().Be(300);
+            world.HallOfFame[1].Score.Should().Be(300);
+            world.HallOfFame[2].Score.Should().Be(300);
+
         }
 
         private void HookUpAndSimulateBadGame(Action<GameFinishedData> gameFinished)
