@@ -9,7 +9,7 @@ namespace BowlingKata.ScoreBoardWhilePlaying
     /// </summary>
     public class Scoreboard
     {
-        readonly Dictionary<string, Game> playersWithGames = new Dictionary<string, Game>();
+        private readonly Dictionary<string, Game> playersWithGames = new Dictionary<string, Game>();
 
         public Game this[string name]
         {
