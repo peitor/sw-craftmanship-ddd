@@ -1,4 +1,5 @@
 ﻿using BowlingKata.PlayingAGame;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace BowlingKata.Test.ScoreBoardWhilePlaying
@@ -11,9 +12,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
             var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(1);
 
-            int score = game.ScoreForFrame(1);
-
-            Assert.AreEqual(1, score);
+            game.ScoreForFrame(1).Should().Be(1);
         }
 
         [Test]
@@ -23,9 +22,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
             game.Roll(1);
             game.Roll(4);
 
-            int score = game.ScoreForFrame(1);
-
-            Assert.AreEqual(5, score);
+            game.ScoreForFrame(1).Should().Be(5);
         }
 
         [Test]
@@ -35,9 +32,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
             game.Roll(7);
             game.Roll(3);
 
-            int score = game.ScoreForFrame(1);
-
-            Assert.AreEqual(-1, score);
+            game.ScoreForFrame(1).Should().Be(-1);
         }
 
         [Test]
