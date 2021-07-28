@@ -9,7 +9,7 @@ namespace BowlingKata.Test.HallOfFame
     public class SimulateDifferentGames
     {
         [Test]
-        public void OneGameFinished_SeeIt()
+        public void OnePerfectGameFinished_SeeIt()
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
@@ -19,6 +19,7 @@ namespace BowlingKata.Test.HallOfFame
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
 
             Assert.True(world.HallOfFame.Length > hallOfFameLength);
+            Assert.That(world.HallOfFame[0].Score == 300);
         }
 
         [Test]
