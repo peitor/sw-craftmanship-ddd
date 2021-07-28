@@ -4,6 +4,7 @@ namespace BowlingKata.PlayingAGame
 {
     public class Game
     {
+
         public string PlayerName { get; set; } = "(default Playername)";
 
         private readonly int[] rolls = new int[21];
@@ -15,6 +16,13 @@ namespace BowlingKata.PlayingAGame
 
         private bool gameFinishedWasAlreadyCalled = false;
 
+        public static Game NewGameWithPlayer(string playerName)
+        {
+            var newGameWithPlayer = new Game();
+            newGameWithPlayer.PlayerName = playerName;
+            return newGameWithPlayer;
+        }
+        
         public void Roll(int pins)
         {
             rolls[currentRoll++] = pins;

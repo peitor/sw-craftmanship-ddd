@@ -5,9 +5,9 @@ namespace BowlingKata.HallOfFame
 {
     public class HallOfFameRepository
     {
-        public void StoreGame(int score)
+        public void StoreGame(int score, string playerName)
         {
-            Database.Add("HallOfFameGames", new BowlingGame(score));
+            Database.Add("HallOfFameGames", new BowlingGame(score, playerName));
         }
 
         public BowlingGame[] GetAllGames()

@@ -4,11 +4,14 @@ namespace BowlingKata.HallOfFame
 {
     public class BowlingGame : DatabaseMetadata
     {
-        public BowlingGame(int score)
-        {
-            Score = score;
-        }
+        public string PlayerName { get; }
 
         public int Score { get; }
+
+        public BowlingGame(int score, string playerName)
+        {
+            PlayerName = playerName;
+            Score = score;
+        }
     }
 }

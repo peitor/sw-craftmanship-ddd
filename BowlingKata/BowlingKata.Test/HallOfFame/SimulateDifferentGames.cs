@@ -26,7 +26,7 @@ namespace BowlingKata.Test.HallOfFame
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
             var world = new HallOfFameBoundedContext();
             
-            HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
+            HookUpAndSimulatePerfectGame(world.GameFinishedHappened,"Peter Any-Bowler-Name");
             
             world.HallOfFame[0].PlayerName.Should().Be("Peter Any-Bowler-Name");
         }
@@ -91,9 +91,9 @@ namespace BowlingKata.Test.HallOfFame
         }
 
 
-        private static void HookUpAndSimulatePerfectGame(Action<GameFinishedData> gameFinished)
+        private static void HookUpAndSimulatePerfectGame(Action<GameFinishedData> gameFinished, string playerName = "(none set)")
         {
-            var game = new Game();
+            var game = Game.NewGameWithPlayer(playerName);
             game.GameFinished += gameFinished;
             12.Times(() => game.Roll(10));
         }

@@ -10,7 +10,9 @@ namespace BowlingKata.HallOfFame
         //   Use IOC for that.
         public void GameFinishedHappened(GameFinishedData gameFinishedData)
         {
-            new HallOfFameRepository().StoreGame(gameFinishedData.TotalScore);
+            new HallOfFameRepository().StoreGame(
+                gameFinishedData.TotalScore,
+                gameFinishedData.PlayerName);
         }
     }
 }
