@@ -8,7 +8,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
         [Test]
         public void ScoreForFrame_OneRoll()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(1);
 
             int score = game.ScoreForFrame(1);
@@ -19,7 +19,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
         [Test]
         public void ScoreForFrame_TwoRolls()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(1);
             game.Roll(4);
 
@@ -31,7 +31,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
         [Test]
         public void ScoreForFrame_SpareInCurrentFrame_ScoreIsUnknown()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(7);
             game.Roll(3);
 
@@ -43,7 +43,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
         [Test]
         public void ScoreForFrame_SpareInPreviousFrame_ScoreIsKnown()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(7);
             game.Roll(3);
 
@@ -60,7 +60,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
         [Test]
         public void ScoreForFrame_Strike_ScoreIsUnknown()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(10);
 
             int scoreForFrame1 = game.ScoreForFrame(1);
@@ -71,7 +71,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
         [Test]
         public void ScoreForFrame_StrikeInPreviousFrame_FirstRoll_ScoreIsUnknown()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(10);
             game.Roll(2);
 
@@ -85,7 +85,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
         [Test]
         public void ScoreForFrame_StrikeInPreviousFrame_SecondRoll_ScoreIsKnown()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(10);
 
             game.Roll(2);
@@ -101,7 +101,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
         [Test]
         public void ScoreForFrame_TwoStrikes_ScoreIsUnknown()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(10);
             game.Roll(10);
 
@@ -115,7 +115,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
         [Test]
         public void ScoreForFrame_TwoStrikes_FirstRollInThirdFrame_ScoreIsUnknown()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(10);
             game.Roll(10);
             game.Roll(2);
@@ -132,7 +132,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
         [Test]
         public void ScoreForFrame_TwoStrikes_SecondRollInThirdFrame_ScoreIsKnown()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(10);
             game.Roll(10);
             game.Roll(2);
@@ -150,7 +150,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
         [Test]
         public void ScoreForFrame_SpareAfterAStrike_ScoreIsUnknown()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(10);
 
             game.Roll(3);
@@ -166,7 +166,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
         [Test]
         public void ScoreForFrame_StrikeSpareRoll_ScoreIsKnown()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(10);
 
             game.Roll(3);
@@ -186,7 +186,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
         [Test]
         public void ScoreForFrame_Spare_FirstRollInSecondFrame_ScoreIsKnown()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(3);
             game.Roll(7);
 

@@ -85,7 +85,7 @@ namespace BowlingKata.Test.HallOfFame
 
         private void HookUpAndSimulateBadGame(Action<GameFinishedData> gameFinished)
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.GameFinished += gameFinished;
             20.Times(() => game.Roll(1));
         }

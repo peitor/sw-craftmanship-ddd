@@ -11,7 +11,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void TwoRolls_NotFinished()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(1);
             game.Roll(1);
 
@@ -21,7 +21,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void EightRolls_NotFinished()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             8.Times(() => game.Roll(10));
 
             Assert.That(game.IsFinished == false);
@@ -30,7 +30,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void TwelveStrikes_GameFinished()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             12.Times(() => game.Roll(10));
             Assert.That(game.IsFinished);
         }
@@ -38,7 +38,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void TwelveStrikes_GameFinished_EventsRaised()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             var gameFinishedHandler = GivenEventFinishedHandler(game);
 
             12.Times(() => game.Roll(10));
@@ -49,7 +49,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void ThirteenStrikes_GameFinished_EventsRaised()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             var gameFinishedHandler = GivenEventFinishedHandler(game);
 
             13.Times(() => game.Roll(10));
@@ -60,7 +60,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void PairsOfNineAndMissShouldReturn90()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             5.Times(() =>
             {
                 game.Roll(9);
@@ -80,7 +80,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void NoRolls_NotFinished()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             var gameFinishedHandler = GivenEventFinishedHandler(game);
 
             Assert.That(game.IsFinished == false);
@@ -102,7 +102,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void ASSUMPTION__ComplicatedGame_NotFinished()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             //TODO: Sophisticated games could break the logic in the "return" statement?? <-- Assumption
             13.Times(() => game.Roll(1));
 

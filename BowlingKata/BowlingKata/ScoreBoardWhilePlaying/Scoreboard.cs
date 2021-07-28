@@ -17,7 +17,7 @@ namespace BowlingKata.ScoreBoardWhilePlaying
             {
                 if (!playersWithGames.ContainsKey(name))
                 {
-                    playersWithGames[name] = new Game();
+                    playersWithGames[name] = Game.NewGameWithAnonymousPlayer();
                 }
 
                 return playersWithGames[name];

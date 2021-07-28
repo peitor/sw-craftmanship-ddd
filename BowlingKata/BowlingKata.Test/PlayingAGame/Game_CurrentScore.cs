@@ -10,14 +10,14 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void InitialScoreShouldBeZero()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             Assert.AreEqual(0, game.CurrentScore());
         }
 
         [Test]
         public void RunningGame_ReturnsMinus1()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(3);
             game.Roll(5);
 
@@ -29,7 +29,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void StrikesOnly_ShouldReturn300()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             12.Times(() => game.Roll(10));
             Assert.AreEqual(300, game.CurrentScore());
         }
@@ -37,7 +37,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void PairsOfNineAndMissShouldReturn90()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             10.Times(() =>
             {
                 game.Roll(9);
@@ -50,7 +50,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void FivesOnlyShouldReturn150()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
 
             21.Times(() => game.Roll(5));
 
@@ -60,7 +60,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void OneNormalRoll()
         {
-            var g = new Game();
+            var g = Game.NewGameWithAnonymousPlayer();
 
             RollAndAssert(g, 3, 3);
         }
@@ -68,7 +68,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void TwoNormalRolls()
         {
-            var g = new Game();
+            var g = Game.NewGameWithAnonymousPlayer();
 
             RollAndAssert(g, 3, 3);
             RollAndAssert(g, 4, 7);
@@ -78,7 +78,7 @@ namespace BowlingKata.Test.PlayingAGame
         public void TODO_ToVerify()
         {
             // TODO
-            var g = new Game();
+            var g = Game.NewGameWithAnonymousPlayer();
 
             RollAndAssert(g, 10, 10);
 
@@ -91,7 +91,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void OneStrike_2Empty()
         {
-            var g = new Game();
+            var g = Game.NewGameWithAnonymousPlayer();
 
             RollAndAssert(g, 10, 10);
 
@@ -106,7 +106,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void SimulateFullGame_2Strikes_LotsOr0()
         {
-            var g = new Game();
+            var g = Game.NewGameWithAnonymousPlayer();
 
             RollAndAssert(g, 10, 10);
             RollAndAssert(g, 0, 10);
@@ -136,7 +136,7 @@ namespace BowlingKata.Test.PlayingAGame
         {
             // Simulation validated by http://www.sportcalculators.com/bowling-score-calculator
 
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(10);
 
             game.Roll(0);
@@ -171,7 +171,7 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void RollingMoreThen21TimesShouldThrowException()
         {
-            var game = new Game();
+            var game = Game.NewGameWithAnonymousPlayer();
 
             Assert.Throws<IndexOutOfRangeException>(() => 22.Times(() => game.Roll(5)));
         }

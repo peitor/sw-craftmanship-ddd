@@ -4,8 +4,7 @@ namespace BowlingKata.PlayingAGame
 {
     public class Game
     {
-
-        public string PlayerName { get; set; } = "(default Playername)";
+        public string PlayerName { get; private set; } = "(default Playername)";
 
         private readonly int[] rolls = new int[21];
         private int currentRoll;
@@ -16,13 +15,19 @@ namespace BowlingKata.PlayingAGame
 
         private bool gameFinishedWasAlreadyCalled = false;
 
+        private Game()  {  }
+
+        public static Game NewGameWithAnonymousPlayer()
+        {
+            return NewGameWithPlayer("(default anonymous playername)");
+        }
+
         public static Game NewGameWithPlayer(string playerName)
         {
-            var newGameWithPlayer = new Game();
-            newGameWithPlayer.PlayerName = playerName;
+            var newGameWithPlayer = new Game {PlayerName = playerName};
             return newGameWithPlayer;
         }
-        
+
         public void Roll(int pins)
         {
             rolls[currentRoll++] = pins;
@@ -30,7 +35,7 @@ namespace BowlingKata.PlayingAGame
             if (IsStrike(currentFrameIndex))
             {
                 currentFrameIndex++;
-            } 
+            }
 
             TryRaiseGameFinishedEvent();
         }
@@ -123,7 +128,7 @@ namespace BowlingKata.PlayingAGame
                 IsFinished = Frame10HasValidScore();
 
                 int scoreForFrame = ScoreForFrame(10);
-                
+
                 if (IsFinished)
                 {
                     RaiseGameFinishedEvent(scoreForFrame);
