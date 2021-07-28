@@ -44,7 +44,6 @@ namespace BowlingKata.Test.PlayingAGame
             12.Times(() => game.Roll(10));
 
             gameFinishedHandler.Received(1).Invoke(Arg.Any<GameFinishedData>());
-
         }
 
         [Test]
@@ -92,11 +91,11 @@ namespace BowlingKata.Test.PlayingAGame
         [Test]
         public void TwelveStrikes_GameFinished_ReturnPlayerNameInEvent()
         {
-            var game = new Game { PlayerName = "Peter" };
+            var game = Game.NewGameWithPlayer("Peter");
             var gameFinishedHandler = GivenEventFinishedHandler(game);
 
             12.Times(() => game.Roll(10));
-             
+
             gameFinishedHandler.Received(1).Invoke(Arg.Is<GameFinishedData>(data => data.PlayerName == "Peter"));
         }
 
