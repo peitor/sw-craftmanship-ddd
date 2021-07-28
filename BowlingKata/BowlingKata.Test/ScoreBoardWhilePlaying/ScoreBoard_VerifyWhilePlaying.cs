@@ -1,4 +1,5 @@
 ﻿using BowlingKata.ScoreBoardWhilePlaying;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace BowlingKata.Test.ScoreBoardWhilePlaying
@@ -10,7 +11,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
         {
             Scoreboard scoreboard = new Scoreboard();
 
-            Assert.AreEqual(0, scoreboard["Peter"].CurrentScore());
+            scoreboard["Peter"].CurrentScore().Should().Be(0);
         }
 
 
@@ -19,8 +20,8 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
         {
             Scoreboard scoreboard = new Scoreboard();
 
-            Assert.AreEqual(0, scoreboard["Peter"].CurrentScore());
-            Assert.AreEqual(0, scoreboard["Sepp"].CurrentScore());
+            scoreboard["Peter"].CurrentScore().Should().Be(0);
+            scoreboard["Sepp"].CurrentScore().Should().Be(0);
 
             scoreboard["Peter"].Roll(1);
             scoreboard["Sepp"].Roll(1);
@@ -35,8 +36,8 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
             scoreboard["Sepp"].Roll(1);
 
 
-            Assert.AreEqual(41, scoreboard["Peter"].CurrentScore());
-            Assert.AreEqual(4, scoreboard["Sepp"].CurrentScore());
+            scoreboard["Peter"].CurrentScore().Should().Be(41);
+            scoreboard["Sepp"].CurrentScore().Should().Be(4);
         }
     }
 }

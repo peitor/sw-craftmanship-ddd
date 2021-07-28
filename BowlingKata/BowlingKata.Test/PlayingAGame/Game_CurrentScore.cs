@@ -1,6 +1,7 @@
 ﻿using System;
 using BowlingKata.PlayingAGame;
 using Commons;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace BowlingKata.Test.PlayingAGame
@@ -11,7 +12,7 @@ namespace BowlingKata.Test.PlayingAGame
         public void InitialScoreShouldBeZero()
         {
             var game = Game.NewGameWithAnonymousPlayer();
-            Assert.AreEqual(0, game.CurrentScore());
+            game.CurrentScore().Should().Be(0);
         }
 
         [Test]
@@ -23,7 +24,7 @@ namespace BowlingKata.Test.PlayingAGame
 
             game.Roll(5);
 
-            Assert.AreEqual(13, game.CurrentScore());
+            game.CurrentScore().Should().Be(13);
         }
 
         [Test]
@@ -31,7 +32,8 @@ namespace BowlingKata.Test.PlayingAGame
         {
             var game = Game.NewGameWithAnonymousPlayer();
             12.Times(() => game.Roll(10));
-            Assert.AreEqual(300, game.CurrentScore());
+
+            game.CurrentScore().Should().Be(300);
         }
 
         [Test]
@@ -44,7 +46,7 @@ namespace BowlingKata.Test.PlayingAGame
                 game.Roll(0);
             });
 
-            Assert.AreEqual(90, game.CurrentScore());
+            game.CurrentScore().Should().Be(90);
         }
 
         [Test]
@@ -54,7 +56,7 @@ namespace BowlingKata.Test.PlayingAGame
 
             21.Times(() => game.Roll(5));
 
-            Assert.AreEqual(150, game.CurrentScore());
+            game.CurrentScore().Should().Be(150);
         }
 
         [Test]
@@ -99,7 +101,6 @@ namespace BowlingKata.Test.PlayingAGame
             RollAndAssert(g, 1, 14);
 
             RollAndAssert(g, 0, 14);
-
         }
 
 
@@ -128,7 +129,6 @@ namespace BowlingKata.Test.PlayingAGame
 
             RollAndAssert(g, 0, 49);
             RollAndAssert(g, 0, 49);
-
         }
 
         [Test]
@@ -165,7 +165,7 @@ namespace BowlingKata.Test.PlayingAGame
             game.Roll(0);
             game.Roll(0);
 
-            Assert.AreEqual(49, game.CurrentScore());
+            game.CurrentScore().Should().Be(49);
         }
 
         [Test]
@@ -173,13 +173,15 @@ namespace BowlingKata.Test.PlayingAGame
         {
             var game = Game.NewGameWithAnonymousPlayer();
 
-            Assert.Throws<IndexOutOfRangeException>(() => 22.Times(() => game.Roll(5)));
+            Action act = () => 22.Times(() => game.Roll(5));
+
+            act.Should().Throw<IndexOutOfRangeException>();
         }
 
         private static void RollAndAssert(Game g, int pins, int expectedCurrentScore)
         {
             g.Roll(pins);
-            Assert.AreEqual(expectedCurrentScore, g.CurrentScore());
+            g.CurrentScore().Should().Be(expectedCurrentScore);
         }
     }
 }
