@@ -198,3 +198,5 @@ desktop.ini
 # This is the way how to ignore all "packages" folders in all sub folders.
 packages/
 
+
+.idea/
