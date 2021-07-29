@@ -2,6 +2,7 @@
 using BowlingKata.PlayingAGame;
 using Commons;
 using FluentAssertions;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace BowlingKata.Test.PlayingAGame
@@ -167,6 +168,19 @@ namespace BowlingKata.Test.PlayingAGame
 
             game.CurrentScore().Should().Be(49);
         }
+
+        [Test]
+        public void RaisesRollEvent()
+        {
+            var game = Game.NewGameWithAnonymousPlayer();
+            var gameFinishedHandler = Substitute.For<Action<RollData>>();
+            game.RollHappened += gameFinishedHandler;
+
+            game.Roll(10);
+
+            gameFinishedHandler.Received(1).Invoke(Arg.Any<RollData>());
+        }
+
 
         [Test]
         public void RollingMoreThen21TimesShouldThrowException()

@@ -12,10 +12,13 @@ namespace BowlingKata.PlayingAGame
 
         public bool IsFinished { get; private set; } = false;
         public Action<GameFinishedData> GameFinished { get; set; }
-
         private bool gameFinishedWasAlreadyCalled = false;
 
-        private Game()  {  }
+        public Action<RollData> RollHappened { get; set; }
+
+        private Game()
+        {
+        }
 
         public static Game NewGameWithAnonymousPlayer()
         {
@@ -37,6 +40,7 @@ namespace BowlingKata.PlayingAGame
                 currentFrameIndex++;
             }
 
+            TryRaiseRollHappenedEvent(pins);
             TryRaiseGameFinishedEvent();
         }
 
@@ -120,6 +124,11 @@ namespace BowlingKata.PlayingAGame
             return ScoreForFrame(10) > -1;
         }
 
+        private void TryRaiseRollHappenedEvent(int pins)
+        {
+            RollHappened?.Invoke(new RollData(pins));
+        }
+
         private void TryRaiseGameFinishedEvent()
         {
             if (MinimumRollsHappened())
@@ -152,6 +161,16 @@ namespace BowlingKata.PlayingAGame
                 });
                 gameFinishedWasAlreadyCalled = true;
             }
+        }
+    }
+
+    public class RollData
+    {
+        private readonly int pins;
+
+        public RollData(int pins)
+        {
+            this.pins = pins;
         }
     }
 }
