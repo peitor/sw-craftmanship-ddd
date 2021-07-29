@@ -51,6 +51,10 @@ The current context map looks like this:
   * The codebase is in bad shape. 
   * Game class has too many responsibilities. Fix that next.
 
+Bug: 100.Times(() => game.Roll(5)); <-- RuntimeException
+
+
+
 
 # DISCUSSION
 *    What does "game finishes" mean?
