@@ -1,6 +1,7 @@
 ﻿using System;
 using BowlingKata.PlayingAGame;
 using Commons;
+using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -15,7 +16,7 @@ namespace BowlingKata.Test.PlayingAGame
             game.Roll(1);
             game.Roll(1);
 
-            Assert.That(game.IsFinished == false);
+            game.IsFinished.Should().Be(false);
         }
 
         [Test]
@@ -24,7 +25,7 @@ namespace BowlingKata.Test.PlayingAGame
             var game = Game.NewGameWithAnonymousPlayer();
             8.Times(() => game.Roll(10));
 
-            Assert.That(game.IsFinished == false);
+            game.IsFinished.Should().Be(false);
         }
 
         [Test]
@@ -32,7 +33,8 @@ namespace BowlingKata.Test.PlayingAGame
         {
             var game = Game.NewGameWithAnonymousPlayer();
             12.Times(() => game.Roll(10));
-            Assert.That(game.IsFinished);
+
+            game.IsFinished.Should().Be(true);
         }
 
         [Test]
@@ -66,7 +68,7 @@ namespace BowlingKata.Test.PlayingAGame
                 game.Roll(9);
                 game.Roll(0);
             });
-            Assert.That(game.IsFinished == false);
+            game.IsFinished.Should().Be(false);
 
             5.Times(() =>
             {
@@ -74,7 +76,7 @@ namespace BowlingKata.Test.PlayingAGame
                 game.Roll(0);
             });
 
-            Assert.That(game.IsFinished);
+            game.IsFinished.Should().Be(true);
         }
 
         [Test]
@@ -83,7 +85,7 @@ namespace BowlingKata.Test.PlayingAGame
             var game = Game.NewGameWithAnonymousPlayer();
             var gameFinishedHandler = GivenEventFinishedHandler(game);
 
-            Assert.That(game.IsFinished == false);
+            game.IsFinished.Should().Be(false);
 
             gameFinishedHandler.DidNotReceive().Invoke(Arg.Any<GameFinishedData>());
         }
@@ -109,7 +111,7 @@ namespace BowlingKata.Test.PlayingAGame
             game.Roll(1);
             game.Roll(1);
             // TODO: play around here with this....
-            Assert.That(game.IsFinished == false);
+            game.IsFinished.Should().Be(false);
         }
 
         private static Action<GameFinishedData> GivenEventFinishedHandler(Game game)
