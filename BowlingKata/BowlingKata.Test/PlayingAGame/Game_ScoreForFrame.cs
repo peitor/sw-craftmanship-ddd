@@ -45,11 +45,8 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
             game.Roll(2);
             game.Roll(6);
 
-            int scoreForFrame1 = game.ScoreForFrame(1);
-            int scoreForFrame2 = game.ScoreForFrame(2);
-
-            Assert.AreEqual(12, scoreForFrame1);
-            Assert.AreEqual(20, scoreForFrame2);
+            game.ScoreForFrame(1).Should().Be(12);
+            game.ScoreForFrame(2).Should().Be(20);
         }
 
         [Test]
@@ -58,9 +55,7 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
             var game = Game.NewGameWithAnonymousPlayer();
             game.Roll(10);
 
-            int scoreForFrame1 = game.ScoreForFrame(1);
-
-            Assert.AreEqual(-1, scoreForFrame1);
+            game.ScoreForFrame(1).Should().Be(-1);
         }
 
         [Test]
@@ -70,11 +65,8 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
             game.Roll(10);
             game.Roll(2);
 
-            int scoreForFrame1 = game.ScoreForFrame(1);
-            int scoreForFrame2 = game.ScoreForFrame(2);
-
-            Assert.AreEqual(-1, scoreForFrame1);
-            Assert.AreEqual(-1, scoreForFrame2);
+            game.ScoreForFrame(1).Should().Be(-1);
+            game.ScoreForFrame(2).Should().Be(-1);
         }
 
         [Test]
@@ -86,11 +78,8 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
             game.Roll(2);
             game.Roll(6);
 
-            int scoreForFrame1 = game.ScoreForFrame(1);
-            int scoreForFrame2 = game.ScoreForFrame(2);
-
-            Assert.AreEqual(18, scoreForFrame1);
-            Assert.AreEqual(26, scoreForFrame2);
+            game.ScoreForFrame(1).Should().Be(18);
+            game.ScoreForFrame(2).Should().Be(26);
         }
 
         [Test]
@@ -100,11 +89,8 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
             game.Roll(10);
             game.Roll(10);
 
-            int scoreForFrame1 = game.ScoreForFrame(1);
-            int scoreForFrame2 = game.ScoreForFrame(2);
-
-            Assert.AreEqual(-1, scoreForFrame1);
-            Assert.AreEqual(-1, scoreForFrame2);
+            game.ScoreForFrame(1).Should().Be(-1);
+            game.ScoreForFrame(2).Should().Be(-1);
         }
 
         [Test]
@@ -115,13 +101,9 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
             game.Roll(10);
             game.Roll(2);
 
-            int scoreForFrame1 = game.ScoreForFrame(1);
-            int scoreForFrame2 = game.ScoreForFrame(2);
-            int scoreForFrame3 = game.ScoreForFrame(3);
-
-            Assert.AreEqual(22, scoreForFrame1);
-            Assert.AreEqual(-1, scoreForFrame2);
-            Assert.AreEqual(-1, scoreForFrame3);
+            game.ScoreForFrame(1).Should().Be(22);
+            game.ScoreForFrame(2).Should().Be(-1);
+            game.ScoreForFrame(3).Should().Be(-1);
         }
 
         [Test]
@@ -133,13 +115,9 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
             game.Roll(2);
             game.Roll(7);
 
-            int scoreForFrame1 = game.ScoreForFrame(1);
-            int scoreForFrame2 = game.ScoreForFrame(2);
-            int scoreForFrame3 = game.ScoreForFrame(3);
-
-            Assert.AreEqual(22, scoreForFrame1);
-            Assert.AreEqual(41, scoreForFrame2);
-            Assert.AreEqual(50, scoreForFrame3);
+            game.ScoreForFrame(1).Should().Be(22);
+            game.ScoreForFrame(2).Should().Be(41);
+            game.ScoreForFrame(3).Should().Be(50);
         }
 
         [Test]
@@ -151,11 +129,8 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
             game.Roll(3);
             game.Roll(7);
 
-            int scoreForFrame1 = game.ScoreForFrame(1);
-            int scoreForFrame2 = game.ScoreForFrame(2);
-
-            Assert.AreEqual(20, scoreForFrame1);
-            Assert.AreEqual(-1, scoreForFrame2);
+            game.ScoreForFrame(1).Should().Be(20);
+            game.ScoreForFrame(2).Should().Be(-1);
         }
 
         [Test]
@@ -169,13 +144,9 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
 
             game.Roll(1);
 
-            int scoreForFrame1 = game.ScoreForFrame(1);
-            int scoreForFrame2 = game.ScoreForFrame(2);
-            int scoreForFrame3 = game.ScoreForFrame(3);
-
-            Assert.AreEqual(20, scoreForFrame1);
-            Assert.AreEqual(31, scoreForFrame2);
-            Assert.AreEqual(32, scoreForFrame3);
+            game.ScoreForFrame(1).Should().Be(20);
+            game.ScoreForFrame(2).Should().Be(31);
+            game.ScoreForFrame(3).Should().Be(32);
         }
 
         [Test]
@@ -187,11 +158,8 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
 
             game.Roll(1);
 
-            int scoreForFrame1 = game.ScoreForFrame(1);
-            int scoreForFrame2 = game.ScoreForFrame(2);
-
-            Assert.AreEqual(11, scoreForFrame1);
-            Assert.AreEqual(12, scoreForFrame2);
+            game.ScoreForFrame(1).Should().Be(11);
+            game.ScoreForFrame(2).Should().Be(12);
         }
     }
 }
