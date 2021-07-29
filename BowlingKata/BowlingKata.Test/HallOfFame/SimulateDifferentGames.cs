@@ -78,6 +78,27 @@ namespace BowlingKata.Test.HallOfFame
             world.HallOfFame.Length.Should().Be(3);
         }
 
+        [Test]
+        public void TwoPlayers_OneHallOfFame()
+        {
+            Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            var hallOfFameBoundedContext = new HallOfFameBoundedContext();
+            var game = Game.NewGameWithPlayer("Peter Any-Bowler-Name");
+            var game2 = Game.NewGameWithPlayer("Sepp");
+            
+            game.GameFinished += hallOfFameBoundedContext.GameFinishedHappened;
+            game2.GameFinished += hallOfFameBoundedContext.GameFinishedHappened;
+           
+
+            // Play
+            12.Times(() => game.Roll(10));
+            21.Times(() => game2.Roll(5));
+
+            
+            hallOfFameBoundedContext.HallOfFame[0].PlayerName.Should().Be("Peter Any-Bowler-Name");
+            hallOfFameBoundedContext.HallOfFame[1].PlayerName.Should().Be("Sepp");
+        }
+        
         private void HookUpAndSimulateBadGame(Action<GameFinishedData> gameFinished)
         {
             var game = Game.NewGameWithPlayer("bad player :)");
