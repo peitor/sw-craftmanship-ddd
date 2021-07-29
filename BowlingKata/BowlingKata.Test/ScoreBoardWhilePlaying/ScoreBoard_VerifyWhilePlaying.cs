@@ -39,5 +39,6 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
             scoreboard["Peter"].CurrentScore().Should().Be(41);
             scoreboard["Sepp"].CurrentScore().Should().Be(4);
         }
+        
     }
 }
