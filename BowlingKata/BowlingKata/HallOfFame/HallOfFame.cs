@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using BowlingKata.PlayingAGame;
 
 namespace BowlingKata.HallOfFame
 {
@@ -16,5 +17,12 @@ namespace BowlingKata.HallOfFame
         /// Smell: Tell don't ask.
         /// </summary>
         public BowlingGame this[int position] => new HallOfFameRepository().GetAllGames()[position];
+        
+        public void GameFinishedHappened(GameFinishedData gameFinishedData)
+        {
+            new HallOfFameRepository().StoreGame(
+                gameFinishedData.TotalScore,
+                gameFinishedData.PlayerName);
+        }
     }
 }

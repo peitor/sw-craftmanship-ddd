@@ -1,5 +1,4 @@
 ﻿using System;
-using BowlingKata.HallOfFame;
 using BowlingKata.PlayingAGame;
 using Commons;
 using FluentAssertions;
@@ -13,11 +12,14 @@ namespace BowlingKata.Test.HallOfFame
         public void OnePerfectGameFinished_SeeScoreAndBowlersName()
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            var world = new HallOfFameBoundedContext();
+            var world = new BowlingKata.HallOfFame.HallOfFame();
+            var game = Game.NewGameWithPlayer("Peter Any-Bowler-Name");
+            game.GameFinished += world.GameFinishedHappened;
 
-            HookUpAndSimulatePerfectGame(world.GameFinishedHappened, "Peter Any-Bowler-Name");
+            
+            12.Times(() => game.Roll(10));
 
-            world.HallOfFame[0].PlayerName.Should().Be("Peter Any-Bowler-Name");
+            world[0].PlayerName.Should().Be("Peter Any-Bowler-Name");
         }
 
 
@@ -25,15 +27,15 @@ namespace BowlingKata.Test.HallOfFame
         public void ThreePerfectGamesFinished_SeeThem()
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            var world = new HallOfFameBoundedContext();
+            var world = new BowlingKata.HallOfFame.HallOfFame();
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
 
-            world.HallOfFame[0].Score.Should().Be(300);
-            world.HallOfFame[1].Score.Should().Be(300);
-            world.HallOfFame[2].Score.Should().Be(300);
-            world.HallOfFame.Length.Should().Be(3);
+            world[0].Score.Should().Be(300);
+            world[1].Score.Should().Be(300);
+            world[2].Score.Should().Be(300);
+            world.Length.Should().Be(3);
         }
 
 
@@ -41,15 +43,15 @@ namespace BowlingKata.Test.HallOfFame
         public void FullHallOfFame_NewLowScoreGameFinishes_NoImpact()
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            var world = new HallOfFameBoundedContext();
+            var world = new BowlingKata.HallOfFame.HallOfFame();
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened);
 
-            world.HallOfFame.Length.Should().Be(3);
+            world.Length.Should().Be(3);
             HookUpAndSimulateBadGame(world.GameFinishedHappened);
 
-            world.HallOfFame.Length.Should().Be(3);
+            world.Length.Should().Be(3);
         }
 
         [Test]
@@ -57,7 +59,7 @@ namespace BowlingKata.Test.HallOfFame
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
-            var world = new HallOfFameBoundedContext();
+            var world = new BowlingKata.HallOfFame.HallOfFame();
             HookUpAndSimulateBadGame(world.GameFinishedHappened);
             HookUpAndSimulateBadGame(world.GameFinishedHappened);
             HookUpAndSimulateBadGame(world.GameFinishedHappened);
@@ -69,20 +71,20 @@ namespace BowlingKata.Test.HallOfFame
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened, "3rd");
             HookUpAndSimulatePerfectGame(world.GameFinishedHappened, "4th");
 
-            world.HallOfFame[0].Score.Should().Be(300);
-            world.HallOfFame[1].Score.Should().Be(300);
-            world.HallOfFame[2].Score.Should().Be(300);
-            world.HallOfFame[0].PlayerName.Should().Be("1st");
-            world.HallOfFame[1].PlayerName.Should().Be("2nd");
-            world.HallOfFame[2].PlayerName.Should().Be("3rd");
-            world.HallOfFame.Length.Should().Be(3);
+            world[0].Score.Should().Be(300);
+            world[1].Score.Should().Be(300);
+            world[2].Score.Should().Be(300);
+            world[0].PlayerName.Should().Be("1st");
+            world[1].PlayerName.Should().Be("2nd");
+            world[2].PlayerName.Should().Be("3rd");
+            world.Length.Should().Be(3);
         }
 
         [Test]
         public void TwoPlayers_OneHallOfFame()
         {
             Config.ConnectionString = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            var hallOfFameBoundedContext = new HallOfFameBoundedContext();
+            var hallOfFameBoundedContext = new BowlingKata.HallOfFame.HallOfFame();
             var game = Game.NewGameWithPlayer("Peter Any-Bowler-Name");
             var game2 = Game.NewGameWithPlayer("Sepp");
             
@@ -95,8 +97,8 @@ namespace BowlingKata.Test.HallOfFame
             21.Times(() => game2.Roll(5));
 
             
-            hallOfFameBoundedContext.HallOfFame[0].PlayerName.Should().Be("Peter Any-Bowler-Name");
-            hallOfFameBoundedContext.HallOfFame[1].PlayerName.Should().Be("Sepp");
+            hallOfFameBoundedContext[0].PlayerName.Should().Be("Peter Any-Bowler-Name");
+            hallOfFameBoundedContext[1].PlayerName.Should().Be("Sepp");
         }
         
         private void HookUpAndSimulateBadGame(Action<GameFinishedData> gameFinished)
