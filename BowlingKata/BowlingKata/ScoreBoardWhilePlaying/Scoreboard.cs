@@ -18,17 +18,25 @@ namespace BowlingKata.ScoreBoardWhilePlaying
             {
                 if (!playersWithGames.ContainsKey(name))
                 {
-                    playersWithGames[name] = new ScoreWhilePlayingGame(); // Game.NewGameWithAnonymousPlayer();
+                    playersWithGames[name] = new ScoreWhilePlayingGame(name); // Game.NewGameWithAnonymousPlayer();
+                    playersWithGames[name].GameFinished += GameFinishedInnerRaised;
                 }
 
                 return playersWithGames[name];
             }
         }
 
+        private void GameFinishedInnerRaised(GameFinishedData obj)
+        {
+            GameFinished?.Invoke(obj);
+        }
+
         public void RollHappened(RollEventData rollEventData)
         {
             this[rollEventData.PlayerName].Roll(rollEventData.Pins);
         }
+
+        public event Action<GameFinishedData> GameFinished;
     }
 
     public class ScoreWhilePlayingGame
@@ -37,12 +45,64 @@ namespace BowlingKata.ScoreBoardWhilePlaying
         private int currentRoll;
         private int currentFrameIndex;
 
+        public bool IsFinished { get; private set; }
+        public Action<GameFinishedData> GameFinished { get; set; }
+        private bool gameFinishedWasAlreadyCalled;
+
+        public ScoreWhilePlayingGame(string playerName)
+        {
+            this.PlayerName = playerName;
+        }
+
+        private string PlayerName { get; set; }
+
         public void Roll(int pins)
         {
             rolls[currentRoll++] = pins;
             if (IsStrike(currentFrameIndex))
             {
                 currentFrameIndex++;
+            }
+
+            TryRaiseGameFinishedEvent();
+        }
+
+        private void TryRaiseGameFinishedEvent()
+        {
+            if (MinimumRollsHappened())
+            {
+                // TODO: FIXME: ASAP!  This call is important. 
+                IsFinished = Frame10HasValidScore();
+
+                int scoreForFrame = ScoreForFrame(10);
+
+                if (IsFinished)
+                {
+                    RaiseGameFinishedEvent(scoreForFrame);
+                }
+            }
+        }
+
+        private bool Frame10HasValidScore()
+        {
+            return ScoreForFrame(10) > -1;
+        }
+
+        private bool MinimumRollsHappened()
+        {
+            return currentRoll >= 12;
+        }
+
+        private void RaiseGameFinishedEvent(int scoreForFrame)
+        {
+            if (gameFinishedWasAlreadyCalled == false)
+            {
+                GameFinished?.Invoke(new GameFinishedData
+                {
+                    TotalScore = scoreForFrame,
+                    PlayerName = PlayerName,
+                });
+                gameFinishedWasAlreadyCalled = true;
             }
         }
 
@@ -51,6 +111,13 @@ namespace BowlingKata.ScoreBoardWhilePlaying
             var score = ScoreForFrame(10, out _);
 
             return score;
+        }
+
+        public int ScoreForFrame(int frameNumber)
+        {
+            var score = ScoreForFrame(frameNumber, out var rollIndexNeededForCalculableResult);
+
+            return rollIndexNeededForCalculableResult >= currentRoll && currentRoll != 0 ? -1 : score;
         }
 
         private int ScoreForFrame(int frameNumber, out int rollIndexNeededForCalculableResult)

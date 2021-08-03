@@ -4,16 +4,13 @@ namespace BowlingKata.PlayingAGame
 {
     public class Game
     {
+        public const string DefaultAnonymousPlayername = "(default anonymous playername)";
         private string PlayerName { get; set; } = "(default Playername)";
 
         private readonly int[] rolls = new int[21];
         private int currentRoll;
         private int currentFrameIndex;
-
-        public bool IsFinished { get; private set; }
-        public Action<GameFinishedData> GameFinished { get; set; }
-        private bool gameFinishedWasAlreadyCalled;
-
+     
         public Action<RollEventData> RollHappened { get; set; }
 
         private Game()
@@ -22,7 +19,7 @@ namespace BowlingKata.PlayingAGame
 
         public static Game NewGameWithAnonymousPlayer()
         {
-            return NewGameWithPlayer("(default anonymous playername)");
+            return NewGameWithPlayer(DefaultAnonymousPlayername);
         }
 
         public static Game NewGameWithPlayer(string playerName)
@@ -41,7 +38,7 @@ namespace BowlingKata.PlayingAGame
             }
 
             TryRaiseRollHappenedEvent(pins);
-            TryRaiseGameFinishedEvent();
+           
         }
 
         public int ScoreForFrame(int frameNumber)
@@ -49,13 +46,6 @@ namespace BowlingKata.PlayingAGame
             var score = ScoreForFrame(frameNumber, out var rollIndexNeededForCalculableResult);
 
             return rollIndexNeededForCalculableResult >= currentRoll && currentRoll != 0 ? -1 : score;
-        }
-
-        public int CurrentScore()
-        {
-            var score = ScoreForFrame(10, out _);
-
-            return score;
         }
 
         private int ScoreForFrame(int frameNumber, out int rollIndexNeededForCalculableResult)
@@ -129,39 +119,8 @@ namespace BowlingKata.PlayingAGame
             RollHappened?.Invoke(new RollEventData(this.PlayerName, pins));
         }
 
-        private void TryRaiseGameFinishedEvent()
-        {
-            if (MinimumRollsHappened())
-            {
-                // TODO: FIXME: ASAP!  This call is important. 
-                IsFinished = Frame10HasValidScore();
-
-                int scoreForFrame = ScoreForFrame(10);
-
-                if (IsFinished)
-                {
-                    RaiseGameFinishedEvent(scoreForFrame);
-                }
-            }
-        }
-
-        private bool MinimumRollsHappened()
-        {
-            return currentRoll >= 12;
-        }
-
-        private void RaiseGameFinishedEvent(int scoreForFrame)
-        {
-            if (gameFinishedWasAlreadyCalled == false)
-            {
-                GameFinished?.Invoke(new GameFinishedData
-                {
-                    TotalScore = scoreForFrame,
-                    PlayerName = PlayerName,
-                });
-                gameFinishedWasAlreadyCalled = true;
-            }
-        }
+       
+    
     }
 
     public class RollEventData
