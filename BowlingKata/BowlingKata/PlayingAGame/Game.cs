@@ -113,9 +113,6 @@ namespace BowlingKata.PlayingAGame
         {
             RollHappened?.Invoke(new RollEventData(this.PlayerName, pins));
         }
-
-       
-    
     }
 
     public class RollEventData
