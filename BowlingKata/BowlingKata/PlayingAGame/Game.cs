@@ -109,11 +109,6 @@ namespace BowlingKata.PlayingAGame
             return rolls[frameIndex] + rolls[frameIndex + 1];
         }
 
-        private bool Frame10HasValidScore()
-        {
-            return ScoreForFrame(10) > -1;
-        }
-
         private void TryRaiseRollHappenedEvent(int pins)
         {
             RollHappened?.Invoke(new RollEventData(this.PlayerName, pins));
