@@ -7,10 +7,6 @@ namespace BowlingKata.PlayingAGame
         public const string DefaultAnonymousPlayername = "(default anonymous playername)";
         private string PlayerName { get; set; } = "(default Playername)";
 
-        private readonly int[] rolls = new int[21];
-        private int currentRoll;
-        private int currentFrameIndex;
-     
         public Action<RollEventData> RollHappened { get; set; }
 
         private Game()
@@ -30,20 +26,7 @@ namespace BowlingKata.PlayingAGame
 
         public void Roll(int pins)
         {
-            rolls[currentRoll++] = pins;
-
-            if (IsStrike(currentFrameIndex))
-            {
-                currentFrameIndex++;
-            }
-
             TryRaiseRollHappenedEvent(pins);
-           
-        }
-
-        private bool IsStrike(int frameIndex)
-        {
-            return rolls[frameIndex] == 10;
         }
 
         private void TryRaiseRollHappenedEvent(int pins)
