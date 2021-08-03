@@ -76,6 +76,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="PlayingAGame\Game_CurrentScore_Infrastructure.cs" />
     <Compile Include="PlayingAGame\Game_IsFinished.cs" />
     <Compile Include="PlayingAGame\Game_CurrentScore.cs" />
     <Compile Include="HallOfFame\SimulateDifferentGames.cs" />

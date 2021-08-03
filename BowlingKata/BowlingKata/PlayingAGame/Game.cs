@@ -4,15 +4,15 @@ namespace BowlingKata.PlayingAGame
 {
     public class Game
     {
-        public string PlayerName { get; private set; } = "(default Playername)";
+        private string PlayerName { get; set; } = "(default Playername)";
 
         private readonly int[] rolls = new int[21];
         private int currentRoll;
         private int currentFrameIndex;
 
-        public bool IsFinished { get; private set; } = false;
+        public bool IsFinished { get; private set; }
         public Action<GameFinishedData> GameFinished { get; set; }
-        private bool gameFinishedWasAlreadyCalled = false;
+        private bool gameFinishedWasAlreadyCalled;
 
         public Action<RollData> RollHappened { get; set; }
 
@@ -126,7 +126,7 @@ namespace BowlingKata.PlayingAGame
 
         private void TryRaiseRollHappenedEvent(int pins)
         {
-            RollHappened?.Invoke(new RollData(pins));
+            RollHappened?.Invoke(new RollData(this.PlayerName, pins));
         }
 
         private void TryRaiseGameFinishedEvent()
@@ -166,11 +166,14 @@ namespace BowlingKata.PlayingAGame
 
     public class RollData
     {
-        private readonly int pins;
+        public int Pins { get; }
 
-        public RollData(int pins)
+        public string PlayerName { get; private set; }
+
+        public RollData(string playerName, int pins)
         {
-            this.pins = pins;
+            this.PlayerName = playerName;
+            this.Pins = pins;
         }
     }
 }

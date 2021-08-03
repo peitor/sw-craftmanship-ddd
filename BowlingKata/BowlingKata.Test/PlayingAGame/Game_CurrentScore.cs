@@ -2,14 +2,12 @@
 using BowlingKata.PlayingAGame;
 using Commons;
 using FluentAssertions;
-using NSubstitute;
 using NUnit.Framework;
 
 namespace BowlingKata.Test.PlayingAGame
 {
     public class Game_CurrentScore
     {
-
         [Test]
         public void RunningGame_ReturnsMinus1()
         {
@@ -161,18 +159,6 @@ namespace BowlingKata.Test.PlayingAGame
             game.Roll(0);
 
             game.CurrentScore().Should().Be(49);
-        }
-
-        [Test]
-        public void RaisesRollEvent()
-        {
-            var game = Game.NewGameWithAnonymousPlayer();
-            var gameFinishedHandler = Substitute.For<Action<RollData>>();
-            game.RollHappened += gameFinishedHandler;
-
-            game.Roll(10);
-
-            gameFinishedHandler.Received(1).Invoke(Arg.Any<RollData>());
         }
 
 
