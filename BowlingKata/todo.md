@@ -1,9 +1,10 @@
 # TO DOs
+* Fix TODOs
 ############
 Where should the logic of ScorePerFrame stay? PlayingAGame or VisualizingScoreboard
 ############
 
-* Fix TODOs
+* Inconsistent APIs between Game.New  and new Scoreboard();
 * Complicated bool:     return rollIndexNeededForCalculableResult >= currentRoll && currentRoll != 0 ? -1 : score;
 * The raising of the event is in the Game.
 * The raise event is probably buggy and broken.
