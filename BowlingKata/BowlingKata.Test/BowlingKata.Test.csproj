@@ -78,7 +78,6 @@
   <ItemGroup>
     <Compile Include="PlayingAGame\Game_CurrentScore_Infrastructure.cs" />
     <Compile Include="PlayingAGame\Game_IsFinished.cs" />
-    <Compile Include="PlayingAGame\Game_CurrentScore.cs" />
     <Compile Include="HallOfFame\SimulateDifferentGames.cs" />
     <Compile Include="PlayingAGame\Game_ScoreForFrame.cs" />
     <Compile Include="ScoreBoardWhilePlaying\ScoreBoard_VerifyWhilePlaying.cs" />
