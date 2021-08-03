@@ -1,4 +1,8 @@
 # TO DOs
+############
+Where should the logic of ScorePerFrame stay? PlayingAGame or VisualizingScoreboard
+############
+
 * Fix TODOs
 * Complicated bool:     return rollIndexNeededForCalculableResult >= currentRoll && currentRoll != 0 ? -1 : score;
 * The raising of the event is in the Game.
