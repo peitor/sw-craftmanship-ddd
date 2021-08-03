@@ -1,7 +1,7 @@
 # TO DOs
 * Fix TODOs
 ############
-Where should the logic of ScorePerFrame stay? PlayingAGame or VisualizingScoreboard
+Update Image!
 ############
 
 * Inconsistent APIs between Game.New  and new Scoreboard();
