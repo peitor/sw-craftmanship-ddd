@@ -8,18 +8,18 @@ namespace BowlingKata.Test.PlayingAGame
 {
     public class Game_CurrentScore_Infrastructure
     {
-        private RollData receivedDataRollEvent;
+        private RollEventData receivedEventDataRollEventEvent;
 
         [Test]
         public void RaisesRollEvent()
         {
             var game = Game.NewGameWithAnonymousPlayer();
-            var gameFinishedHandler = Substitute.For<Action<RollData>>();
+            var gameFinishedHandler = Substitute.For<Action<RollEventData>>();
             game.RollHappened += gameFinishedHandler;
 
             game.Roll(10);
 
-            gameFinishedHandler.Received(1).Invoke(Arg.Any<RollData>());
+            gameFinishedHandler.Received(1).Invoke(Arg.Any<RollEventData>());
         }
 
 
@@ -32,14 +32,14 @@ namespace BowlingKata.Test.PlayingAGame
 
             game.Roll(10);
 
-            receivedDataRollEvent.Pins.Should().Be(10);
+            receivedEventDataRollEventEvent.Pins.Should().Be(10);
             
-            receivedDataRollEvent.PlayerName.Should().Be(playerName);
+            receivedEventDataRollEventEvent.PlayerName.Should().Be(playerName);
         }
 
-        private void gameFinishedHandler(RollData receivedData)
+        private void gameFinishedHandler(RollEventData receivedEventData)
         {
-            this.receivedDataRollEvent = receivedData;
+            this.receivedEventDataRollEventEvent = receivedEventData;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace BowlingKata.PlayingAGame
         public Action<GameFinishedData> GameFinished { get; set; }
         private bool gameFinishedWasAlreadyCalled;
 
-        public Action<RollData> RollHappened { get; set; }
+        public Action<RollEventData> RollHappened { get; set; }
 
         private Game()
         {
@@ -126,7 +126,7 @@ namespace BowlingKata.PlayingAGame
 
         private void TryRaiseRollHappenedEvent(int pins)
         {
-            RollHappened?.Invoke(new RollData(this.PlayerName, pins));
+            RollHappened?.Invoke(new RollEventData(this.PlayerName, pins));
         }
 
         private void TryRaiseGameFinishedEvent()
@@ -164,13 +164,13 @@ namespace BowlingKata.PlayingAGame
         }
     }
 
-    public class RollData
+    public class RollEventData
     {
         public int Pins { get; }
 
         public string PlayerName { get; private set; }
 
-        public RollData(string playerName, int pins)
+        public RollEventData(string playerName, int pins)
         {
             this.PlayerName = playerName;
             this.Pins = pins;
