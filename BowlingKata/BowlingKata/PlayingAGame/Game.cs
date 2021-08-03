@@ -41,72 +41,9 @@ namespace BowlingKata.PlayingAGame
            
         }
 
-        public int ScoreForFrame(int frameNumber)
-        {
-            var score = ScoreForFrame(frameNumber, out var rollIndexNeededForCalculableResult);
-
-            return rollIndexNeededForCalculableResult >= currentRoll && currentRoll != 0 ? -1 : score;
-        }
-
-        private int ScoreForFrame(int frameNumber, out int rollIndexNeededForCalculableResult)
-        {
-            if (frameNumber > 10 || frameNumber < 0)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-
-            var score = 0;
-            var currentRollIndex = 0;
-            rollIndexNeededForCalculableResult = 0;
-
-            for (var currentFrame = 1; currentFrame <= frameNumber; currentFrame++)
-            {
-                if (IsStrike(currentRollIndex))
-                {
-                    score += 10 + StrikeBonus(currentRollIndex);
-                    rollIndexNeededForCalculableResult = currentRollIndex + 2;
-                    currentRollIndex++;
-                }
-                else if (IsSpare(currentRollIndex))
-                {
-                    score += 10 + SpareBonus(currentRollIndex);
-                    rollIndexNeededForCalculableResult = currentRollIndex + 2;
-                    currentRollIndex += 2;
-                }
-                else
-                {
-                    score += SumOfBallsInFrame(currentRollIndex);
-                    rollIndexNeededForCalculableResult = Math.Max(currentRollIndex, rollIndexNeededForCalculableResult);
-                    currentRollIndex += 2;
-                }
-            }
-
-            return score;
-        }
-
         private bool IsStrike(int frameIndex)
         {
             return rolls[frameIndex] == 10;
-        }
-
-        private bool IsSpare(int frameIndex)
-        {
-            return rolls[frameIndex] + rolls[frameIndex + 1] == 10;
-        }
-
-        private int StrikeBonus(int frameIndex)
-        {
-            return rolls[frameIndex + 1] + rolls[frameIndex + 2];
-        }
-
-        private int SpareBonus(int frameIndex)
-        {
-            return rolls[frameIndex + 2];
-        }
-
-        private int SumOfBallsInFrame(int frameIndex)
-        {
-            return rolls[frameIndex] + rolls[frameIndex + 1];
         }
 
         private void TryRaiseRollHappenedEvent(int pins)
