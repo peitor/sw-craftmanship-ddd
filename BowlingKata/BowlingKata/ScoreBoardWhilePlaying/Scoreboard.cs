@@ -28,18 +28,18 @@ namespace BowlingKata.ScoreBoardWhilePlaying
 
     public class ScoreWhilePlayingGame
     {
-                public string PlayerName { get; private set; } = "(default Playername)";
+        private string PlayerName { get; set; } = "(default Playername)";
 
         private readonly int[] rolls = new int[21];
         private int currentRoll;
         private int currentFrameIndex;
 
-        public bool IsFinished { get; private set; } = false;
+        private bool IsFinished { get; set; } = false;
         public Action<GameFinishedData> GameFinished { get; set; }
         private bool gameFinishedWasAlreadyCalled = false;
 
         public Action<RollData> RollHappened { get; set; }
-       
+
         public void Roll(int pins)
         {
             rolls[currentRoll++] = pins;
@@ -176,9 +176,8 @@ namespace BowlingKata.ScoreBoardWhilePlaying
     // TODO: Scoreboard should not use the Game, but have its own. Separate Bounded Contexts!
     public class RunningGame
     {
-    //    public string PlayerName { get; set; } = "(default Playername)";
+        //    public string PlayerName { get; set; } = "(default Playername)";
 
         public int CurrentScore { get; set; }
-
     }
 }
