@@ -9,12 +9,6 @@ namespace BowlingKata.Test.PlayingAGame
 {
     public class Game_CurrentScore
     {
-        [Test]
-        public void InitialScoreShouldBeZero()
-        {
-            var game = Game.NewGameWithAnonymousPlayer();
-            game.CurrentScore().Should().Be(0);
-        }
 
         [Test]
         public void RunningGame_ReturnsMinus1()

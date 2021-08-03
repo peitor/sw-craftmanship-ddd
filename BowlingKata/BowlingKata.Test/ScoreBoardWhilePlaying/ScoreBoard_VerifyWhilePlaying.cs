@@ -7,6 +7,15 @@ namespace BowlingKata.Test.ScoreBoardWhilePlaying
     public class ScoreBoard_VerifyWhilePlaying
     {
         [Test]
+        public void InitialScoreShouldBeZero()
+        {
+            Scoreboard scoreboard = new Scoreboard();
+
+            scoreboard["any"].CurrentScore().Should().Be(0);
+        }
+        
+        
+        [Test]
         public void JustStarted_ScoreIsZero()
         {
             Scoreboard scoreboard = new Scoreboard();
