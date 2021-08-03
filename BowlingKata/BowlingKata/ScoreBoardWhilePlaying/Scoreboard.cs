@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BowlingKata.PlayingAGame;
 
 namespace BowlingKata.ScoreBoardWhilePlaying
 {
@@ -22,6 +23,11 @@ namespace BowlingKata.ScoreBoardWhilePlaying
 
                 return playersWithGames[name];
             }
+        }
+
+        public void RollHappened(RollEventData rollEventData)
+        {
+            this[rollEventData.PlayerName].Roll(rollEventData.Pins);
         }
     }
 
